@@ -8,16 +8,18 @@ import {
   Layers,
   Sparkles,
   Wifi,
-  Database
+  Database,
+  BookOpen,
+  ArrowRight
 } from 'lucide-react';
 
-export default function Features() {
+export default function Features({ onOpenGuide }) {
   const features = [
     {
       icon: Network,
       color: 'from-blue-600 to-cyan-500',
       title: 'Tích hợp tất cả các dòng máy chấm công IP',
-      desc: 'Hỗ trợ Ronald Jack, Gigata (T9, T8, FA-113), ZKTeco, Hikvision qua cổng tiêu chuẩn 4370 UDP/TCP và mật mã kết nối CommKey.'
+      desc: 'Hỗ trợ Ronald Jack, Gigata (T9, T8, FA-113), ZKTeco, Wise Eye qua cổng tiêu chuẩn 4370 UDP/TCP và mật mã kết nối CommKey.'
     },
     {
       icon: Clock,
@@ -29,7 +31,7 @@ export default function Features() {
       icon: FileSpreadsheet,
       color: 'from-emerald-600 to-teal-500',
       title: 'Xuất Excel ma trận 31 ngày chuẩn mực',
-      desc: 'Báo cáo điểm danh hàng ngày, bảng tổng hợp công tháng hiển thị chi tiết: Công chuẩn, Đi muộn, Về sớm, Tăng ca OT (1.5x, 2.0x, 3.0x), Nghỉ phép (P, Ro, L).'
+      desc: 'Báo cáo điểm danh hàng ngày, bảng tổng hợp công tháng hiển thị chi tiết: Công chuẩn, Đi muộn, Về sớm, Tăng ca OT (1.5x, 2.0x, 3.0x), Nghỉ phép.'
     },
     {
       icon: UsersRound,
@@ -83,6 +85,27 @@ export default function Features() {
             );
           })}
         </div>
+
+        {/* Call to Guide */}
+        {onOpenGuide && (
+          <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-blue-50 via-indigo-50/50 to-blue-50 border border-blue-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-blue-500/20">
+                <BookOpen className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-900 text-sm">Bạn cần tài liệu hướng dẫn chi tiết từng bước?</h4>
+                <p className="text-xs text-slate-600">Xem cẩm nang kết nối máy chấm công, tạo ca làm việc, tính công và xuất Excel.</p>
+              </div>
+            </div>
+            <button
+              onClick={onOpenGuide}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-blue-700 hover:text-blue-800 font-bold text-xs shadow-sm hover:shadow transition-all shrink-0 cursor-pointer"
+            >
+              Xem Hướng Dẫn Sử Dụng <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

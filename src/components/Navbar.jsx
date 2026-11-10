@@ -1,7 +1,7 @@
 import React from 'react';
-import { Fingerprint, Shield, Download, Search, Sparkles, UserCheck } from 'lucide-react';
+import { Fingerprint, Shield, Download, Search, Sparkles, UserCheck, BookOpen } from 'lucide-react';
 
-export default function Navbar({ onOpenLookup, onOpenOrder, onOpenAdmin, isAdminLoggedIn, onLogoutAdmin }) {
+export default function Navbar({ onOpenLookup, onOpenOrder, onOpenAdmin, onOpenGuide, isAdminLoggedIn, onLogoutAdmin }) {
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-white/90 border-b border-slate-200/80 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -20,23 +20,37 @@ export default function Navbar({ onOpenLookup, onOpenOrder, onOpenAdmin, isAdmin
         </a>
 
         {/* Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-600">
           <a href="#features" className="hover:text-blue-600 transition-colors">Tính năng</a>
           <a href="#pricing" className="hover:text-blue-600 transition-colors">Bảng giá</a>
           <a href="#download" className="hover:text-blue-600 transition-colors">Tải phần mềm</a>
           <button
+            onClick={onOpenGuide}
+            className="flex items-center gap-1.5 hover:text-blue-600 transition-colors text-slate-600 font-semibold cursor-pointer"
+          >
+            <BookOpen className="w-4 h-4 text-blue-600" /> Hướng dẫn sử dụng
+          </button>
+          <button
             onClick={onOpenLookup}
-            className="flex items-center gap-1.5 hover:text-emerald-600 transition-colors text-slate-600 font-semibold"
+            className="flex items-center gap-1.5 hover:text-emerald-600 transition-colors text-slate-600 font-semibold cursor-pointer"
           >
             <Search className="w-4 h-4 text-emerald-600" /> Tra cứu bản quyền
           </button>
         </nav>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <button
+            onClick={onOpenGuide}
+            className="lg:hidden p-2 text-slate-600 hover:text-blue-600 rounded-lg hover:bg-slate-100"
+            title="Hướng dẫn sử dụng"
+          >
+            <BookOpen className="w-5 h-5 text-blue-600" />
+          </button>
+
           <button
             onClick={onOpenLookup}
-            className="md:hidden p-2 text-slate-600 hover:text-slate-900"
+            className="lg:hidden p-2 text-slate-600 hover:text-emerald-600 rounded-lg hover:bg-slate-100"
             title="Tra cứu bản quyền"
           >
             <Search className="w-5 h-5 text-emerald-600" />
@@ -53,13 +67,13 @@ export default function Navbar({ onOpenLookup, onOpenOrder, onOpenAdmin, isAdmin
             <div className="flex items-center gap-2">
               <button
                 onClick={onOpenAdmin}
-                className="px-3 py-1.5 rounded-lg text-xs font-bold bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100"
+                className="px-3 py-1.5 rounded-lg text-xs font-bold bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 cursor-pointer"
               >
                 Trang Quản Trị
               </button>
               <button
                 onClick={onLogoutAdmin}
-                className="text-xs text-slate-500 hover:text-rose-600 px-1 py-1 font-medium"
+                className="text-xs text-slate-500 hover:text-rose-600 px-1 py-1 font-medium cursor-pointer"
                 title="Đăng xuất"
               >
                 Thoát
@@ -68,7 +82,7 @@ export default function Navbar({ onOpenLookup, onOpenOrder, onOpenAdmin, isAdmin
           ) : (
             <button
               onClick={onOpenAdmin}
-              className="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition-colors"
+              className="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
               title="Đăng nhập Admin"
             >
               <Shield className="w-4 h-4" />

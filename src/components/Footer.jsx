@@ -1,7 +1,7 @@
 import React from 'react';
-import { Phone, Mail, ShieldCheck, Heart } from 'lucide-react';
+import { Phone, Mail, ShieldCheck, Heart, BookOpen } from 'lucide-react';
 
-export default function Footer({ onOpenAdmin }) {
+export default function Footer({ onOpenAdmin, onOpenGuide }) {
   return (
     <footer className="bg-white border-t border-slate-200 py-12 text-slate-600 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,7 +26,12 @@ export default function Footer({ onOpenAdmin }) {
               <li><a href="#pricing" className="hover:text-blue-600 transition-colors">Bảng giá bản quyền</a></li>
               <li><a href="#download" className="hover:text-blue-600 transition-colors">Tải bộ cài đặt (.exe)</a></li>
               <li>
-                <button onClick={onOpenAdmin} className="hover:text-purple-600 font-medium transition-colors">
+                <button onClick={onOpenGuide} className="hover:text-blue-600 font-semibold transition-colors cursor-pointer text-left">
+                  📖 Hướng dẫn sử dụng toàn diện
+                </button>
+              </li>
+              <li>
+                <button onClick={onOpenAdmin} className="hover:text-purple-600 font-medium transition-colors cursor-pointer text-left">
                   Cổng Quản Trị Viên
                 </button>
               </li>

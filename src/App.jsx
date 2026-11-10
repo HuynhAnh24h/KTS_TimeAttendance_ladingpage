@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import Pricing from './components/Pricing';
 import DownloadSection from './components/DownloadSection';
+import UserGuide from './components/UserGuide';
 import OrderModal from './components/OrderModal';
 import VietQRModal from './components/VietQRModal';
 import LicenseLookup from './components/LicenseLookup';
@@ -14,7 +15,7 @@ import { licenseApi } from './api/client';
 
 export default function App() {
   const [plans, setPlans] = useState([]);
-  const [currentView, setCurrentView] = useState('landing'); // 'landing' | 'admin'
+  const [currentView, setCurrentView] = useState('landing'); // 'landing' | 'admin' | 'guide'
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
 
   // Modals state
@@ -44,6 +45,21 @@ export default function App() {
         }
       })
       .catch(console.error);
+
+    // Xử lý chuyển view qua hash URL (#guide)
+    const handleHash = () => {
+      if (window.location.hash === '#guide') {
+        setCurrentView('guide');
+        window.scrollTo(0, 0);
+      } else if (!window.location.hash || window.location.hash === '#' || ['#features', '#pricing', '#download'].includes(window.location.hash)) {
+        if (currentView === 'guide') {
+          setCurrentView('landing');
+        }
+      }
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
   }, []);
 
   const handleSelectPlan = (plan) => {
@@ -74,12 +90,85 @@ export default function App() {
     setCurrentView('landing');
   };
 
+  const handleOpenGuide = () => {
+    window.location.hash = '#guide';
+    setCurrentView('guide');
+    window.scrollTo(0, 0);
+  };
+
   if (currentView === 'admin' && isAdminLoggedIn) {
     return (
       <AdminDashboard
-        onBackToHome={() => setCurrentView('landing')}
+        onBackToHome={() => {
+          window.location.hash = '';
+          setCurrentView('landing');
+        }}
         onLogout={handleAdminLogout}
       />
+    );
+  }
+
+  if (currentView === 'guide') {
+    return (
+      <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col selection:bg-blue-600 selection:text-white">
+        <UserGuide
+          onBackToHome={() => {
+            window.location.hash = '';
+            setCurrentView('landing');
+            window.scrollTo(0, 0);
+          }}
+          onOpenOrder={() => {
+            setSelectedPlan(plans[1] || null);
+            setOrderModalOpen(true);
+          }}
+          onOpenLookup={() => {
+            setLookupQuery('');
+            setLookupModalOpen(true);
+          }}
+        />
+
+        <Footer
+          onOpenAdmin={() => {
+            if (isAdminLoggedIn) {
+              setCurrentView('admin');
+            } else {
+              setAdminLoginOpen(true);
+            }
+          }}
+          onOpenGuide={handleOpenGuide}
+        />
+
+        {/* Modals */}
+        <OrderModal
+          isOpen={orderModalOpen}
+          onClose={() => setOrderModalOpen(false)}
+          selectedPlan={selectedPlan}
+          onSuccess={handleOrderSuccess}
+        />
+
+        <VietQRModal
+          isOpen={vietQrModalOpen}
+          onClose={() => setVietQrModalOpen(false)}
+          order={createdOrder}
+          onGoToLookup={handleGoToLookup}
+        />
+
+        <LicenseLookup
+          isOpen={lookupModalOpen}
+          onClose={() => setLookupModalOpen(false)}
+          initialQuery={lookupQuery}
+          onOpenOrder={() => {
+            setLookupModalOpen(false);
+            setOrderModalOpen(true);
+          }}
+        />
+
+        <AdminLoginModal
+          isOpen={adminLoginOpen}
+          onClose={() => setAdminLoginOpen(false)}
+          onLoginSuccess={handleAdminLoginSuccess}
+        />
+      </div>
     );
   }
 
@@ -102,6 +191,7 @@ export default function App() {
             setAdminLoginOpen(true);
           }
         }}
+        onOpenGuide={handleOpenGuide}
         isAdminLoggedIn={isAdminLoggedIn}
         onLogoutAdmin={handleAdminLogout}
       />
@@ -117,9 +207,10 @@ export default function App() {
             setLookupQuery('');
             setLookupModalOpen(true);
           }}
+          onOpenGuide={handleOpenGuide}
         />
 
-        <Features />
+        <Features onOpenGuide={handleOpenGuide} />
 
         <Pricing
           plans={plans}
@@ -138,6 +229,7 @@ export default function App() {
             setAdminLoginOpen(true);
           }
         }}
+        onOpenGuide={handleOpenGuide}
       />
 
       {/* Modals */}

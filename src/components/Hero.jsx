@@ -1,7 +1,7 @@
 import React from 'react';
-import { Download, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, Cpu, Zap, Fingerprint } from 'lucide-react';
+import { Download, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, Cpu, Zap, Fingerprint, BookOpen } from 'lucide-react';
 
-export default function Hero({ onOpenOrder, onOpenLookup }) {
+export default function Hero({ onOpenOrder, onOpenLookup, onOpenGuide }) {
   return (
     <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-blue-50/70 via-white to-slate-50">
       {/* Background glow effects */}
@@ -33,26 +33,33 @@ export default function Hero({ onOpenOrder, onOpenLookup }) {
         </p>
 
         {/* CTA Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           <a
             href="#download"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/25 hover:from-blue-500 hover:to-indigo-500 transition-all hover:scale-105"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/25 hover:from-blue-500 hover:to-indigo-500 transition-all hover:scale-105"
           >
             <Download className="w-4 h-4" /> Tải Bộ Cài Đặt (.exe)
           </a>
 
+          <button
+            onClick={onOpenGuide}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm bg-white border border-slate-300 text-slate-800 hover:bg-slate-50 hover:border-slate-400 transition-all shadow-sm cursor-pointer"
+          >
+            <BookOpen className="w-4 h-4 text-blue-600" /> Hướng Dẫn Sử Dụng
+          </button>
+
           <a
             href="#pricing"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-sm bg-white border border-slate-300 text-slate-800 hover:bg-slate-50 hover:border-slate-400 transition-all shadow-sm"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm bg-white border border-slate-300 text-slate-800 hover:bg-slate-50 hover:border-slate-400 transition-all shadow-sm"
           >
             <Sparkles className="w-4 h-4 text-amber-500" /> Bảng Giá Bản Quyền
           </a>
 
           <button
             onClick={onOpenLookup}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm text-slate-700 hover:text-blue-600 transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-bold text-sm text-slate-700 hover:text-blue-600 transition-colors cursor-pointer"
           >
-            Tra Cứu Key Bản Quyền <ArrowRight className="w-4 h-4" />
+            Tra Cứu Key <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 
