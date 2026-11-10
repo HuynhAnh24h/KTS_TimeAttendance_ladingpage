@@ -68,7 +68,7 @@ app.use('/api/license', licenseRoutes);
 app.use('/api/admin', adminRoutes);
 
 // Phục vụ giao diện React Frontend (Production build)
-const clientDistPath = path.join(__dirname, '..', 'client', 'dist');
+const clientDistPath = path.join(__dirname, '..', 'dist');
 if (fs.existsSync(clientDistPath) && fs.existsSync(path.join(clientDistPath, 'index.html'))) {
   app.use(express.static(clientDistPath));
 

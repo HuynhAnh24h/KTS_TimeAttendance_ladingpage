@@ -1,14 +1,12 @@
 # Dependencies
 node_modules/
-client/node_modules/
-server/node_modules/
 
 # Production builds
-client/dist/
+dist/
 
-# Large binary installers (host on GitHub Releases instead of git repo)
-client/public/downloads/*.exe
-client/public/downloads/*.zip
+# Large binary installers
+public/downloads/*.exe
+public/downloads/*.zip
 
 # Environment files
 .env

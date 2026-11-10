@@ -23,30 +23,15 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          cache-dependency-path: |
-            license-server/server/package-lock.json
-            license-server/client/package-lock.json
 
-      - name: Install Server Dependencies
-        run: |
-          cd server
-          npm ci || npm install
+      - name: Install All Dependencies
+        run: npm ci || npm install
 
       - name: Run Backend & License Algorithm Tests
-        run: |
-          cd server
-          npm test
-
-      - name: Install Client Dependencies
-        run: |
-          cd client
-          npm ci || npm install
+        run: npm test
 
       - name: Build React Client (Vite)
-        run: |
-          cd client
-          npm run build
+        run: npm run build
 
       - name: Verify Build Artifacts
-        run: |
-          test -f client/dist/index.html && echo "Frontend build successful!"
+        run: test -f dist/index.html && echo "Frontend build successful!"
