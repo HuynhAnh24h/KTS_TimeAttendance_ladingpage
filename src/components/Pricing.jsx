@@ -57,14 +57,14 @@ export default function Pricing({ plans = [], onSelectPlan }) {
   const displayPlans = plans.length > 0 ? plans : defaultPlans;
 
   return (
-    <section id="pricing" className="py-20 relative overflow-hidden">
+    <section id="pricing" className="py-20 bg-slate-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Bảng Giá Bản Quyền Minh Bạch</span>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-black text-white tracking-tight">
+          <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">Bảng Giá Bản Quyền Minh Bạch</span>
+          <h2 className="mt-2 text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
             Chọn Gói Bản Quyền Phù Hợp Với Bạn
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-slate-400">
+          <p className="mt-4 text-sm sm:text-base text-slate-600">
             Kích hoạt ngay bằng mã Machine ID hiển thị trên phần mềm. Thanh toán quét mã VietQR tự động 24/7.
           </p>
         </div>
@@ -77,8 +77,8 @@ export default function Pricing({ plans = [], onSelectPlan }) {
                 key={p.id}
                 className={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 ${
                   isHighlight
-                    ? 'bg-slate-900/90 border-2 border-blue-500 shadow-2xl shadow-blue-500/10 -translate-y-2'
-                    : 'bg-slate-900/40 border border-slate-800 hover:border-slate-700'
+                    ? 'bg-white border-2 border-blue-600 shadow-2xl shadow-blue-500/15 -translate-y-2 ring-4 ring-blue-50'
+                    : 'bg-white border border-slate-200 shadow-sm hover:border-slate-300 hover:shadow-md'
                 }`}
               >
                 {/* Badge if Popular */}
@@ -90,25 +90,25 @@ export default function Pricing({ plans = [], onSelectPlan }) {
 
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-white">{p.name}</h3>
-                    {p.isBestValue && <Star className="w-5 h-5 text-amber-400 fill-amber-400" />}
+                    <h3 className="text-lg font-bold text-slate-900">{p.name}</h3>
+                    {p.isBestValue && <Star className="w-5 h-5 text-amber-500 fill-amber-500" />}
                   </div>
 
-                  <p className="text-xs text-slate-400 min-h-[36px] mb-6">{p.description}</p>
+                  <p className="text-xs text-slate-500 min-h-[36px] mb-6 leading-relaxed">{p.description}</p>
 
-                  <div className="flex items-baseline gap-1.5 mb-6 pb-6 border-b border-slate-800">
-                    <span className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                  <div className="flex items-baseline gap-1.5 mb-6 pb-6 border-b border-slate-100">
+                    <span className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
                       {p.formattedPrice || Number(p.price).toLocaleString('vi-VN') + 'đ'}
                     </span>
-                    <span className="text-xs font-semibold text-slate-400">{p.period}</span>
+                    <span className="text-xs font-semibold text-slate-500">{p.period}</span>
                   </div>
 
                   {/* Feature list */}
                   <ul className="space-y-3 mb-8">
                     {p.features?.map((f, fi) => (
-                      <li key={fi} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <div className="w-4 h-4 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 mt-0.5">
-                          <Check className="w-3 h-3" />
+                      <li key={fi} className="flex items-start gap-2.5 text-xs text-slate-700">
+                        <div className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-3 h-3 stroke-[2.5]" />
                         </div>
                         <span>{f}</span>
                       </li>
@@ -121,8 +121,8 @@ export default function Pricing({ plans = [], onSelectPlan }) {
                   onClick={() => onSelectPlan(p)}
                   className={`w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
                     isHighlight
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/30 hover:from-blue-500 hover:to-indigo-500 hover:scale-[1.02]'
-                      : 'bg-slate-800 hover:bg-slate-700 text-slate-100'
+                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/25 hover:from-blue-500 hover:to-indigo-500 hover:scale-[1.02]'
+                      : 'bg-slate-100 hover:bg-slate-200 text-slate-800'
                   }`}
                 >
                   <Sparkles className="w-4 h-4" /> Đăng Ký Mua Gói Này
@@ -133,7 +133,7 @@ export default function Pricing({ plans = [], onSelectPlan }) {
         </div>
 
         {/* Note */}
-        <div className="mt-12 text-center text-xs text-slate-400">
+        <div className="mt-12 text-center text-xs text-slate-500">
           <p>
             🛡️ Hỗ trợ kích hoạt bản quyền nhanh trong 5-15 phút. Bạn có thể tự tra cứu mã kích hoạt bất cứ lúc nào.
           </p>
