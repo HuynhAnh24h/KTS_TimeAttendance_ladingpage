@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: kts-timeattendance-license-portal
+    env: node
+    plan: free
+    region: singapore
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MASTER_SECRET
+        value: KTS-ENTERPRISE-FACTORY-SECURE-KEY-2026-HUYNHANH-KORNBEST-AI
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: BANK_ID
+        value: MB
+      - key: BANK_ACCOUNT_NO
+        value: 0987654321
+      - key: BANK_ACCOUNT_NAME
+        value: NGUYEN HUYNH ANH

@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Production builds
+client/dist/
+
+# Large binary installers (host on GitHub Releases instead of git repo)
+client/public/downloads/*.exe
+client/public/downloads/*.zip
+
+# Environment files
+.env
+.env.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

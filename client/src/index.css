@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Custom Gradient Glow */
+.glow-blue {
+  box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.3);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 50px -10px rgba(16, 185, 129, 0.3);
+}
+
+/* Hide scrollbar for clean carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

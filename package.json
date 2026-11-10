@@ -1,0 +1,37 @@
+{
+  "name": "kts-timeattendance-license-portal",
+  "version": "2.0.0",
+  "description": "KTS TimeAttendance - Landing Page & Online License Management System (MERN Stack)",
+  "private": true,
+  "main": "api/index.js",
+  "scripts": {
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "build": "cd client && npm install && npm run build",
+    "test": "node server/test/license.test.js",
+    "start": "node server/server.js",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "dev": "node server/server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "keywords": [
+    "mern",
+    "timeattendance",
+    "license-manager",
+    "landing-page",
+    "vietqr",
+    "vercel"
+  ],
+  "author": "KTS Software Enterprise",
+  "license": "Commercial"
+}
