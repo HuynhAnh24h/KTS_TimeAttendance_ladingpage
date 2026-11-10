@@ -136,7 +136,14 @@ export default function UserGuide({ onBackToHome, onOpenOrder, onOpenLookup }) {
                     <ShieldCheck className="w-3.5 h-3.5 text-blue-600" /> Cần hỗ trợ trực tiếp?
                   </p>
                   <p className="text-slate-600">Hotline & Zalo kỹ thuật UltraView:</p>
-                  <p className="font-bold text-blue-700">0987.654.321</p>
+                  <a
+                    href="https://zalo.me/0776980269"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-bold text-blue-700 hover:text-blue-800 hover:underline block text-xs"
+                  >
+                    0776.980.269
+                  </a>
                 </div>
               </div>
             </div>
@@ -594,7 +601,7 @@ export default function UserGuide({ onBackToHome, onOpenOrder, onOpenLookup }) {
                       ❓ Lỗi 3: Cài lại Win hoặc đổi máy tính có bị mất bản quyền không?
                     </span>
                     <p className="text-slate-600 text-[11px]">
-                      <strong>Trả lời:</strong> Nếu bạn cài lại Windows trên cùng một máy tính, Mã máy tính (Machine ID) không thay đổi nên License Key cũ vẫn kích hoạt thành công trọn đời. Nếu bạn mua máy vi tính mới hoàn toàn, vui lòng liên hệ Zalo kỹ thuật <strong>0987.654.321</strong> để được hỗ trợ chuyển đổi bản quyền sang máy mới nhanh chóng.
+                      <strong>Trả lời:</strong> Nếu bạn cài lại Windows trên cùng một máy tính, Mã máy tính (Machine ID) không thay đổi nên License Key cũ vẫn kích hoạt thành công trọn đời. Nếu bạn mua máy vi tính mới hoàn toàn, vui lòng liên hệ Zalo kỹ thuật <strong>0776.980.269</strong> để được hỗ trợ chuyển đổi bản quyền sang máy mới nhanh chóng.
                     </p>
                   </div>
                 </div>
@@ -602,12 +609,12 @@ export default function UserGuide({ onBackToHome, onOpenOrder, onOpenLookup }) {
                 <div className="pt-2 text-center">
                   <p className="text-slate-500 text-[11px] mb-3">Bạn vẫn còn câu hỏi chưa được giải đáp?</p>
                   <a
-                    href="https://zalo.me"
+                    href="https://zalo.me/0776980269"
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs shadow-md shadow-blue-500/20 hover:from-blue-700 hover:to-indigo-700 transition-all"
                   >
-                    <HelpCircle className="w-4 h-4" /> Liên Hệ Kỹ Thuật Viên Qua Zalo
+                    <HelpCircle className="w-4 h-4" /> Nhắn Zalo Hỗ Trợ: 0776.980.269
                   </a>
                 </div>
               </div>

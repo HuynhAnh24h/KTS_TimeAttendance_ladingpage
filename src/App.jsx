@@ -5,6 +5,7 @@ import Features from './components/Features';
 import Pricing from './components/Pricing';
 import DownloadSection from './components/DownloadSection';
 import UserGuide from './components/UserGuide';
+import FloatingZalo from './components/FloatingZalo';
 import OrderModal from './components/OrderModal';
 import VietQRModal from './components/VietQRModal';
 import LicenseLookup from './components/LicenseLookup';
@@ -168,6 +169,9 @@ export default function App() {
           onClose={() => setAdminLoginOpen(false)}
           onLoginSuccess={handleAdminLoginSuccess}
         />
+
+        {/* Floating Zalo Chat Button */}
+        <FloatingZalo />
       </div>
     );
   }
@@ -262,6 +266,9 @@ export default function App() {
         onClose={() => setAdminLoginOpen(false)}
         onLoginSuccess={handleAdminLoginSuccess}
       />
+
+      {/* Floating Zalo Chat Button */}
+      <FloatingZalo />
     </div>
   );
 }

@@ -112,6 +112,7 @@ export default function VietQRModal({ isOpen, onClose, order, onGoToLookup }) {
           <Clock className="w-4 h-4 shrink-0 mt-0.5 text-blue-600" />
           <p className="leading-relaxed">
             Hệ thống hoặc Quản trị viên sẽ kiểm tra và cấp mã bản quyền trong vòng <strong>5-15 phút</strong>.
+            Cần duyệt ngay? Nhắn Zalo: <a href="https://zalo.me/0776980269" target="_blank" rel="noreferrer" className="font-bold text-blue-700 underline">0776.980.269</a>.
             Bạn có thể bấm nút bên dưới để chuyển sang màn hình <strong>Tra Cứu Bản Quyền</strong> và lấy License Key bất cứ lúc nào!
           </p>
         </div>

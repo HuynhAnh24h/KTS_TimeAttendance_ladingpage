@@ -44,7 +44,14 @@ export default function Footer({ onOpenAdmin, onOpenGuide }) {
             <ul className="space-y-2">
               <li className="flex items-center gap-2 text-slate-700">
                 <Phone className="w-3.5 h-3.5 text-blue-600" />
-                <span className="font-semibold">Hotline / Zalo: 0987.654.321</span>
+                <a
+                  href="https://zalo.me/0776980269"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-blue-600 hover:text-blue-700 hover:underline"
+                >
+                  Hotline / Zalo: 0776.980.269
+                </a>
               </li>
               <li className="flex items-center gap-2 text-slate-700">
                 <Mail className="w-3.5 h-3.5 text-blue-600" />

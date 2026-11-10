@@ -1,7 +1,7 @@
 import React from 'react';
-import { Fingerprint, Shield, Download, Search, Sparkles, UserCheck, BookOpen } from 'lucide-react';
+import { Search, Sparkles,  BookOpen } from 'lucide-react';
 
-export default function Navbar({ onOpenLookup, onOpenOrder, onOpenAdmin, onOpenGuide, isAdminLoggedIn, onLogoutAdmin }) {
+export default function Navbar({ onOpenLookup,  onOpenGuide,}) {
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-white/90 border-b border-slate-200/80 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -62,32 +62,6 @@ export default function Navbar({ onOpenLookup, onOpenOrder, onOpenAdmin, onOpenG
           >
             <Sparkles className="w-3.5 h-3.5" /> Mua Bản Quyền
           </a>
-
-          {isAdminLoggedIn ? (
-            <div className="flex items-center gap-2">
-              <button
-                onClick={onOpenAdmin}
-                className="px-3 py-1.5 rounded-lg text-xs font-bold bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 cursor-pointer"
-              >
-                Trang Quản Trị
-              </button>
-              <button
-                onClick={onLogoutAdmin}
-                className="text-xs text-slate-500 hover:text-rose-600 px-1 py-1 font-medium cursor-pointer"
-                title="Đăng xuất"
-              >
-                Thoát
-              </button>
-            </div>
-          ) : (
-            <button
-              onClick={onOpenAdmin}
-              className="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-              title="Đăng nhập Admin"
-            >
-              <Shield className="w-4 h-4" />
-            </button>
-          )}
         </div>
       </div>
     </header>
