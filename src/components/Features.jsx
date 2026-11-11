@@ -1,108 +1,88 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Network,
-  Clock,
-  FileSpreadsheet,
-  UsersRound,
-  Shield,
-  Layers,
-  Sparkles,
-  Wifi,
-  Database,
-  BookOpen,
-  ArrowRight
-} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function Features() {
   const features = [
     {
-      icon: Network,
-      color: 'from-blue-600 to-cyan-500',
-      title: 'Tích hợp tất cả các dòng máy chấm công IP',
-      desc: 'Hỗ trợ Ronald Jack, Gigata (T9, T8, FA-113), ZKTeco, Wise Eye qua cổng tiêu chuẩn 4370 UDP/TCP và mật mã kết nối CommKey.'
+      num: '01',
+      title: 'Tự động quét & kết nối máy IP trong mạng LAN',
+      desc: 'Tự động dò tìm Ronald Jack, Gigata T9, ZKTeco trên cổng tiêu chuẩn 4370 trong mạng nội bộ chỉ mất 0.7 giây, không cần cấu hình IP thủ công.'
     },
     {
-      icon: Clock,
-      color: 'from-indigo-600 to-purple-500',
-      title: 'Thuật toán Auto-Shift tự động tìm ca',
-      desc: 'Hệ thống tự đối chiếu giờ quẹt thẻ thực tế với hàng loạt ca hành chính, ca kíp 2-3 ca liên tục, hỗ trợ chấm bù 1-Click khi nhân viên quên quẹt.'
+      num: '02',
+      title: 'Thuật toán Auto-Shift tự động tìm ca thông minh',
+      desc: 'Tự động đối chiếu giờ quẹt thẻ với các ca hành chính, ca kíp xoay vòng 24/7, tính toán chính xác đi muộn, về sớm và hỗ trợ chấm bù 1-click.'
     },
     {
-      icon: FileSpreadsheet,
-      color: 'from-emerald-600 to-teal-500',
-      title: 'Xuất Excel ma trận 31 ngày chuẩn mực',
-      desc: 'Báo cáo điểm danh hàng ngày, bảng tổng hợp công tháng hiển thị chi tiết: Công chuẩn, Đi muộn, Về sớm, Tăng ca OT (1.5x, 2.0x, 3.0x), Nghỉ phép.'
+      num: '03',
+      title: 'Xuất Excel ma trận 31 ngày chuẩn Luật Lao Động',
+      desc: 'Tổng hợp bảng công tháng chi tiết: công chuẩn, đi muộn, về sớm, nghỉ phép, tăng ca ngày thường (1.5x), chủ nhật (2.0x) và lễ tết (3.0x).'
     },
     {
-      icon: UsersRound,
-      color: 'from-rose-600 to-pink-500',
-      title: 'Quản lý hồ sơ nhân sự & Nhập Excel',
-      desc: 'Lưu trữ thông tin nhân sự, phòng ban, phân quyền tài khoản (Admin, Nhân sự, Kế toán). Cho phép xóa nhân sự đơn lẻ hoặc hàng loạt an toàn.'
+      num: '04',
+      title: 'Quản lý hồ sơ nhân sự & Nhập liệu từ Excel',
+      desc: 'Quản lý danh sách nhân sự, phân phòng ban, chức vụ, phân quyền tài khoản (Admin, Nhân sự, Kế toán) và hỗ trợ xóa hàng loạt an toàn.'
     },
     {
-      icon: Layers,
-      color: 'from-amber-500 to-orange-500',
-      title: 'Chạy 1 App Native - Hoàn toàn không bật CMD',
-      desc: 'Được đóng gói chuẩn thương mại, mở trực tiếp bằng cửa sổ phần mềm độc lập, không hiện terminal CMD phiền toái, đóng mở nhẹ nhàng chỉ 0.5s.'
+      num: '05',
+      title: 'Đóng gói chuẩn Native App - Không bật terminal',
+      desc: 'Chạy độc lập mượt mà trên Windows 10/11, không hiện cửa sổ CMD đen phiền toái, mở phần mềm ngay trong 0.5 giây và chiếm cực ít RAM.'
     },
     {
-      icon: Database,
-      color: 'from-purple-600 to-indigo-500',
-      title: 'Bảo mật CSDL & Sao lưu 1-Click',
-      desc: 'Lưu trữ cục bộ bảo mật trên máy chủ doanh nghiệp. Hỗ trợ sao lưu file cơ sở dữ liệu định kỳ, an tâm không sợ mất lịch sử quẹt thẻ.'
+      num: '06',
+      title: 'Dữ liệu cục bộ an toàn & Sao lưu dự phòng 1-Click',
+      desc: 'Cơ sở dữ liệu SQLite/SQL lưu trực tiếp trên máy chủ của bạn, không gửi dữ liệu ra ngoài internet, đảm bảo bảo mật nội bộ tuyệt đối 100%.'
     }
   ];
 
   return (
-    <section id="features" className="py-20 bg-white border-y border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Tính Năng Vượt Trội</span>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            Giải Pháp Chấm Công Toàn Diện Cho Nhà Máy & Văn Phòng
+    <section id="features" className="py-24 bg-white border-y border-slate-200/60">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">Tính Năng Cốt Lõi</span>
+          <h2 className="mt-2.5 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Thiết Kế Tối Ưu Cho Mọi Quy Trình Chấm Công
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-slate-600">
-            Được xây dựng từ thực tiễn sản xuất với hơn 1.000+ nhân sự, đảm bảo tính chuẩn xác, tốc độ và độ ổn định cao nhất.
+          <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            Loại bỏ hoàn toàn các thao tác thủ công, giải phóng thời gian cho bộ phận nhân sự và kế toán tiền lương.
           </p>
         </div>
 
+        {/* Clean, Elegant Grid with Numbers instead of noisy rainbow icons */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((f, i) => {
-            const Icon = f.icon;
-            return (
-              <div
-                key={i}
-                className="p-7 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:border-blue-400 hover:bg-white transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/5 group"
-              >
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-tr ${f.color} p-0.5 mb-5 shadow-sm group-hover:scale-105 transition-transform`}>
-                  <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center text-blue-600">
-                    <Icon className="w-6 h-6" />
-                  </div>
-                </div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">{f.title}</h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{f.desc}</p>
+          {features.map((f, i) => (
+            <div
+              key={i}
+              className="p-7 rounded-2xl bg-slate-50/60 border border-slate-200/70 hover:bg-white hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 group"
+            >
+              <div className="flex items-center justify-between mb-5">
+                <span className="text-xs font-mono font-bold text-blue-600 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  {f.num}
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-blue-500 transition-colors" />
               </div>
-            );
-          })}
+              <h3 className="text-base font-bold text-slate-900 mb-2.5 leading-snug group-hover:text-blue-600 transition-colors">
+                {f.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                {f.desc}
+              </p>
+            </div>
+          ))}
         </div>
 
-        {/* Call to Guide */}
-        <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-blue-50 via-indigo-50/50 to-blue-50 border border-blue-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-blue-500/20">
-              <BookOpen className="w-5 h-5" />
-            </div>
-            <div>
-              <h4 className="font-bold text-slate-900 text-sm">Bạn cần tài liệu hướng dẫn chi tiết từng bước?</h4>
-              <p className="text-xs text-slate-600">Xem cẩm nang kết nối máy chấm công, tạo ca làm việc, tính công và xuất Excel.</p>
-            </div>
+        {/* Minimalist Guide Banner */}
+        <div className="mt-14 p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left transition-all hover:border-slate-300">
+          <div>
+            <h4 className="font-bold text-slate-900 text-sm">Cần tài liệu hướng dẫn cấu hình máy chấm công & ca kíp?</h4>
+            <p className="text-xs text-slate-500 mt-1">Xem cẩm nang hướng dẫn kết nối máy, cấu hình ca và xuất Excel chi tiết từng bước.</p>
           </div>
           <Link
             to="/huong-dan"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-blue-700 hover:text-blue-800 font-bold text-xs shadow-sm hover:shadow transition-all shrink-0 cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 hover:text-blue-600 font-semibold text-xs shadow-xs hover:shadow transition-all shrink-0"
           >
-            Xem Hướng Dẫn Sử Dụng <ArrowRight className="w-4 h-4" />
+            Xem Hướng Dẫn Sử Dụng <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </div>
