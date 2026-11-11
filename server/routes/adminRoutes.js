@@ -169,8 +169,9 @@ router.post('/licenses/create', async (req, res) => {
     const expireDate = customExpireDate || calculateExpireDate(pkg);
     const ed = edition || 'Enterprise Edition';
 
-    // Tạo license key chuẩn thuật toán HMAC
+    // Tạo license key chuẩn thuật toán HMAC ràng buộc với Công Ty và Machine ID
     const licenseKey = generateLicenseKey({
+      companyName: company || customerName,
       customer: customerName,
       machineId,
       expireDate,
@@ -225,8 +226,9 @@ router.post('/licenses/:id/approve', async (req, res) => {
     // Tính ngày hết hạn dựa theo gói
     const expireDate = calculateExpireDate(license.packageType);
 
-    // Sinh License Key chính thức
+    // Sinh License Key chính thức ràng buộc theo Công Ty và Machine ID
     const licenseKey = generateLicenseKey({
+      companyName: license.company || license.customerName,
       customer: license.customerName,
       machineId: license.machineId,
       expireDate,

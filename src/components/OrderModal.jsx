@@ -30,7 +30,11 @@ export default function OrderModal({ isOpen, onClose, selectedPlan, onSuccess })
     setError('');
 
     if (!formData.customerName.trim()) {
-      setError('Vui lòng nhập họ và tên hoặc tên doanh nghiệp');
+      setError('Vui lòng nhập họ và tên người đại diện');
+      return;
+    }
+    if (!formData.company.trim()) {
+      setError('Vui lòng nhập Tên công ty / Doanh nghiệp sử dụng');
       return;
     }
     if (!formData.phone.trim()) {
@@ -149,15 +153,17 @@ export default function OrderModal({ isOpen, onClose, selectedPlan, onSuccess })
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
-                Tên công ty / Xưởng sản xuất
+                Tên công ty / Doanh nghiệp *
               </label>
               <input
                 type="text"
-                placeholder="Công ty TNHH KTS"
+                required
+                placeholder="VD: Công ty TNHH May Mặc Sài Gòn"
                 value={formData.company}
                 onChange={e => setFormData({ ...formData, company: e.target.value })}
                 className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-xs placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
               />
+              <p className="text-[10px] text-slate-400 mt-0.5">Mỗi mã bản quyền được cấp cho 1 Công ty</p>
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">

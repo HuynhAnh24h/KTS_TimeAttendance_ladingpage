@@ -63,9 +63,11 @@ app.get('/api/health', async (req, res) => {
 // Import API Routers
 const licenseRoutes = require('./routes/licenseRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const updateRoutes = require('./routes/updateRoutes');
 
 app.use('/api/license', licenseRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/updates', updateRoutes);
 
 // Phục vụ giao diện React Frontend (Production build)
 const clientDistPath = path.join(__dirname, '..', 'dist');

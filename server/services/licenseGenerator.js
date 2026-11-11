@@ -7,6 +7,7 @@ const MASTER_SECRET = process.env.MASTER_SECRET || 'KTS-ENTERPRISE-FACTORY-SECUR
  * Thuật toán sinh License Key tương thích 100% với LicenseService trong phần mềm Desktop (Python).
  */
 function generateLicenseKey({
+  companyName,
   customer,
   machineId,
   expireDate = 'PERPETUAL',
@@ -14,8 +15,12 @@ function generateLicenseKey({
   maxDevices = 0,
   edition = 'Enterprise Edition'
 }) {
+  const comp = (companyName || customer || 'Doanh Nghiệp KTS').trim();
+  const cust = (customer || companyName || 'Khách hàng KTS').trim();
+
   const payload = {
-    customer: (customer || 'Khách hàng KTS').trim(),
+    company_name: comp,
+    customer: cust,
     machine_id: (machineId || '*').trim().toUpperCase(),
     issue_date: new Date().toISOString().split('T')[0],
     expire_date: expireDate ? expireDate.trim().toUpperCase() : 'PERPETUAL',
@@ -106,6 +111,7 @@ function verifyLicenseKey(licenseKey, currentMachineId = null) {
       valid: true,
       status: 'ACTIVE',
       message: 'Bản quyền hợp lệ',
+      companyName: payload.company_name || payload.customer,
       customer: payload.customer,
       machineId: machineInKey,
       edition: payload.edition,
