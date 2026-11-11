@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Network,
   Clock,
@@ -13,7 +14,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-export default function Features({ onOpenGuide }) {
+export default function Features() {
   const features = [
     {
       icon: Network,
@@ -87,25 +88,23 @@ export default function Features({ onOpenGuide }) {
         </div>
 
         {/* Call to Guide */}
-        {onOpenGuide && (
-          <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-blue-50 via-indigo-50/50 to-blue-50 border border-blue-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-blue-500/20">
-                <BookOpen className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="font-bold text-slate-900 text-sm">Bạn cần tài liệu hướng dẫn chi tiết từng bước?</h4>
-                <p className="text-xs text-slate-600">Xem cẩm nang kết nối máy chấm công, tạo ca làm việc, tính công và xuất Excel.</p>
-              </div>
+        <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-blue-50 via-indigo-50/50 to-blue-50 border border-blue-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-blue-500/20">
+              <BookOpen className="w-5 h-5" />
             </div>
-            <button
-              onClick={onOpenGuide}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-blue-700 hover:text-blue-800 font-bold text-xs shadow-sm hover:shadow transition-all shrink-0 cursor-pointer"
-            >
-              Xem Hướng Dẫn Sử Dụng <ArrowRight className="w-4 h-4" />
-            </button>
+            <div>
+              <h4 className="font-bold text-slate-900 text-sm">Bạn cần tài liệu hướng dẫn chi tiết từng bước?</h4>
+              <p className="text-xs text-slate-600">Xem cẩm nang kết nối máy chấm công, tạo ca làm việc, tính công và xuất Excel.</p>
+            </div>
           </div>
-        )}
+          <Link
+            to="/huong-dan"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-blue-700 hover:text-blue-800 font-bold text-xs shadow-sm hover:shadow transition-all shrink-0 cursor-pointer"
+          >
+            Xem Hướng Dẫn Sử Dụng <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
       </div>
     </section>
   );

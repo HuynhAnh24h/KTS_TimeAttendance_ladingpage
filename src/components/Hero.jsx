@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Download, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, Cpu, Zap, Fingerprint, BookOpen } from 'lucide-react';
 
-export default function Hero({ onOpenOrder, onOpenLookup, onOpenGuide }) {
+export default function Hero({ onOpenOrder }) {
   return (
     <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-blue-50/70 via-white to-slate-50">
       {/* Background glow effects */}
@@ -41,12 +42,12 @@ export default function Hero({ onOpenOrder, onOpenLookup, onOpenGuide }) {
             <Download className="w-4 h-4" /> Tải Bộ Cài Đặt (.exe)
           </a>
 
-          <button
-            onClick={onOpenGuide}
+          <Link
+            to="/huong-dan"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm bg-white border border-slate-300 text-slate-800 hover:bg-slate-50 hover:border-slate-400 transition-all shadow-sm cursor-pointer"
           >
             <BookOpen className="w-4 h-4 text-blue-600" /> Hướng Dẫn Sử Dụng
-          </button>
+          </Link>
 
           <a
             href="#pricing"
@@ -55,12 +56,12 @@ export default function Hero({ onOpenOrder, onOpenLookup, onOpenGuide }) {
             <Sparkles className="w-4 h-4 text-amber-500" /> Bảng Giá Bản Quyền
           </a>
 
-          <button
-            onClick={onOpenLookup}
+          <Link
+            to="/tra-cuu"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-bold text-sm text-slate-700 hover:text-blue-600 transition-colors cursor-pointer"
           >
             Tra Cứu Key <ArrowRight className="w-4 h-4" />
-          </button>
+          </Link>
         </div>
 
         {/* Feature Badges Grid */}

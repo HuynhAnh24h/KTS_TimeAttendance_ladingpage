@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: https://kts-timeattendance-ladingpage.vercel.app/sitemap.xml
