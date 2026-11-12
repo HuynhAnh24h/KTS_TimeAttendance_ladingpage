@@ -8,9 +8,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           {/* Brand Col */}
           <div className="md:col-span-2 space-y-3">
-            <div className="flex items-center gap-2.5">
-              <img src="/app_icon.png" alt="KTS Logo" className="w-7 h-7 rounded-lg" />
-              <span className="font-bold text-slate-900 text-sm">KTS TimeAttendance</span>
+            <div className="flex items-center gap-3">
+              <img src="/app_icon.png" alt="KTS Logo" className="w-9 h-9 rounded-xl shadow-xs object-contain" />
+              <div>
+                <span className="font-extrabold text-slate-900 text-sm tracking-tight block">KTS TimeAttendance</span>
+                <span className="text-[10px] text-slate-400 font-medium">Bản Quyền Chính Hãng v2.0.2</span>
+              </div>
             </div>
             <p className="text-slate-500 max-w-sm leading-relaxed text-xs">
               Hệ thống quản lý chấm công & nhân sự cho doanh nghiệp và nhà máy sản xuất.

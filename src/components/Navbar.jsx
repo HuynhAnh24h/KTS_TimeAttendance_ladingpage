@@ -8,13 +8,15 @@ export default function Navbar({ onOpenOrder }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand */}
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 p-1.5 shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform duration-200 flex items-center justify-center">
-            <img src="/app_icon.png" alt="KTS Logo" className="w-full h-full object-contain" />
-          </div>
+          <img
+            src="/app_icon.png"
+            alt="KTS Logo"
+            className="w-10 h-10 rounded-xl object-contain shadow-md shadow-blue-600/25 group-hover:scale-105 transition-transform duration-200"
+          />
           <div>
             <div className="flex items-center gap-2">
               <span className="font-extrabold text-base text-slate-900 tracking-tight">KTS TimeAttendance</span>
-              <span className="px-2 py-0.2 text-[10px] font-bold rounded-full bg-blue-50 text-blue-700 border border-blue-200/80">v2.0.2</span>
+              <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-blue-50 text-blue-700 border border-blue-200/80">v2.0.2</span>
             </div>
             <p className="text-[10px] text-slate-500 hidden sm:block">Đa Chi Nhánh Cloud ADMS & Tính Lương</p>
           </div>
