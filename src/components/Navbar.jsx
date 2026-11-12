@@ -1,60 +1,64 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield } from 'lucide-react';
+import { Shield, Sparkles } from 'lucide-react';
 
 export default function Navbar({ onOpenOrder }) {
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/80 border-b border-slate-200/60 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.03)]">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/90 border-b border-slate-200/70 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand */}
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-xl bg-slate-900 p-1.5 shadow-sm group-hover:scale-105 transition-transform duration-200 flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 p-1.5 shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform duration-200 flex items-center justify-center">
             <img src="/app_icon.png" alt="KTS Logo" className="w-full h-full object-contain" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-base text-slate-900 tracking-tight">KTS TimeAttendance</span>
-              <span className="px-2 py-0.5 text-[10px] font-semibold rounded-full bg-slate-100 text-slate-700 border border-slate-200/80">v2.0</span>
+              <span className="font-extrabold text-base text-slate-900 tracking-tight">KTS TimeAttendance</span>
+              <span className="px-2 py-0.2 text-[10px] font-bold rounded-full bg-blue-50 text-blue-700 border border-blue-200/80">v2.0.2</span>
             </div>
-            <p className="text-[11px] text-slate-500 hidden sm:block">Chấm Công & Quản Lý Nhân Sự IP</p>
+            <p className="text-[10px] text-slate-500 hidden sm:block">Đa Chi Nhánh Cloud ADMS & Tính Lương</p>
           </div>
         </Link>
 
-        {/* Links - Clean without noisy icons */}
-        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600">
-          <a href="/#features" className="hover:text-blue-600 transition-colors">Tính năng</a>
-          <a href="/#pricing" className="hover:text-blue-600 transition-colors">Bảng giá</a>
-          <a href="/#download" className="hover:text-blue-600 transition-colors">Tải phần mềm</a>
-          <Link to="/huong-dan" className="hover:text-blue-600 transition-colors">Hướng dẫn</Link>
-          <Link to="/tra-cuu" className="hover:text-blue-600 transition-colors">Tra cứu Key</Link>
+        {/* Links */}
+        <nav className="hidden lg:flex items-center gap-7 text-xs font-semibold text-slate-600">
+          <a href="/#features" className="hover:text-blue-600 transition-colors">Tính Năng</a>
+          <a href="/#workflow" className="hover:text-blue-600 transition-colors">Quy Trình</a>
+          <a href="/#comparison" className="hover:text-blue-600 transition-colors">So Sánh</a>
+          <a href="/#roi" className="hover:text-blue-600 transition-colors">Ước Tính Tiết Kiệm</a>
+          <a href="/#pricing" className="hover:text-blue-600 transition-colors">Bảng Giá</a>
+          <a href="/#download" className="hover:text-blue-600 transition-colors">Tải Về</a>
+          <Link to="/huong-dan" className="hover:text-blue-600 transition-colors">Hướng Dẫn</Link>
+          <Link to="/tra-cuu" className="hover:text-blue-600 transition-colors">Tra Cứu Key</Link>
         </nav>
 
         {/* Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <Link
             to="/tra-cuu"
-            className="lg:hidden text-xs font-medium text-slate-600 hover:text-blue-600 px-2.5 py-1.5 rounded-lg hover:bg-slate-100"
+            className="lg:hidden text-xs font-bold text-slate-600 hover:text-blue-600 px-2 py-1 rounded-lg hover:bg-slate-100"
           >
-            Tra cứu
+            Tra Cứu
           </Link>
           <Link
             to="/huong-dan"
-            className="lg:hidden text-xs font-medium text-slate-600 hover:text-blue-600 px-2.5 py-1.5 rounded-lg hover:bg-slate-100"
+            className="lg:hidden text-xs font-bold text-slate-600 hover:text-blue-600 px-2 py-1 rounded-lg hover:bg-slate-100"
           >
-            Hướng dẫn
+            Hướng Dẫn
           </Link>
 
           <button
             onClick={onOpenOrder}
-            className="inline-flex items-center justify-center px-4 py-2 rounded-xl text-xs font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700 transition-all hover:shadow hover:shadow-blue-500/20 active:scale-95 cursor-pointer"
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-sm shadow-blue-500/20 hover:from-blue-700 hover:to-indigo-700 transition-all active:scale-95 cursor-pointer"
           >
-            Đăng Ký Bản Quyền
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Đăng Ký Bản Quyền</span>
           </button>
 
           <Link
             to="/admin"
             className="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition-colors"
-            title="Quản trị viên"
+            title="Quản trị viên License Portal"
           >
             <Shield className="w-4 h-4" />
           </Link>
