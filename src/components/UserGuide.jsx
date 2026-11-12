@@ -21,7 +21,12 @@ import {
   Calendar,
   Sparkles,
   ChevronRight,
-  ShieldCheck
+  ShieldCheck,
+  Globe,
+  RefreshCw,
+  Calculator,
+  Zap,
+  Building2
 } from 'lucide-react';
 
 export default function UserGuide({ onBackToHome, onOpenOrder, onOpenLookup }) {
@@ -37,15 +42,17 @@ export default function UserGuide({ onBackToHome, onOpenOrder, onOpenLookup }) {
 
   const sections = [
     { id: 'getting-started', title: '1. Cài Đặt & Khởi Động', icon: Cpu },
-    { id: 'device-connection', title: '2. Kết Nối Máy Chấm Công (IP LAN)', icon: Wifi },
-    { id: 'hr-management', title: '3. Quản Lý Nhân Sự & Phòng Ban', icon: Users },
-    { id: 'sync-data', title: '4. Đồng Bộ Vân Tay & Nhân Viên', icon: Fingerprint },
-    { id: 'shifts-schedules', title: '5. Cấu Hình Ca & Giờ Làm Việc', icon: Clock },
-    { id: 'attendance-logs', title: '6. Tải Log & Theo Dõi Chấm Công', icon: Calendar },
-    { id: 'reports-excel', title: '7. Báo Cáo & Xuất File Excel', icon: FileSpreadsheet },
-    { id: 'license-activation', title: '8. Kích Hoạt Bản Quyền License', icon: KeyRound },
-    { id: 'backup-settings', title: '9. Sao Lưu CSDL & Cài Đặt', icon: Database },
-    { id: 'troubleshooting', title: '10. Khắc Phục Sự Cố & FAQs', icon: HelpCircle },
+    { id: 'device-connection', title: '2. Kết Nối Máy Mạng LAN (Radar 0.7s)', icon: Wifi },
+    { id: 'multi-branch-cloud', title: '3. Chấm Công Đa Chi Nhánh Cloud ADMS', icon: Globe, badge: 'Gói Pro' },
+    { id: 'hr-management', title: '4. Quản Lý Nhân Sự & Phòng Ban', icon: Users },
+    { id: 'sync-data', title: '5. Đồng Bộ Vân Tay & Nhân Viên', icon: Fingerprint },
+    { id: 'shifts-schedules', title: '6. Cấu Hình Ca & Làm Đêm Qua Ngày', icon: Clock },
+    { id: 'attendance-logs', title: '7. Tải Log & Theo Dõi Thời Gian Thực', icon: Calendar },
+    { id: 'payroll-system', title: '8. Tính Lương Tự Động & Bảng Lương', icon: Calculator, badge: 'Mới' },
+    { id: 'reports-excel', title: '9. Báo Cáo & Xuất File Excel 31 Ngày', icon: FileSpreadsheet },
+    { id: 'license-activation', title: '10. Kích Hoạt Bản Quyền License', icon: KeyRound },
+    { id: 'inapp-updates', title: '11. Cập Nhật Tự Động 1-Click Local', icon: RefreshCw },
+    { id: 'troubleshooting', title: '12. Sao Lưu CSDL & Khắc Phục Sự Cố', icon: HelpCircle },
   ];
 
   return (
@@ -69,9 +76,9 @@ export default function UserGuide({ onBackToHome, onOpenOrder, onOpenLookup }) {
               </div>
               <div>
                 <h1 className="text-sm sm:text-base font-bold text-slate-900 leading-tight">
-                  Tài Liệu Hướng Dẫn Sử Dụng
+                  Tài Liệu Hướng Dẫn Sử Dụng Toàn Tập
                 </h1>
-                <p className="text-[10px] text-slate-500 hidden sm:block">KTS TimeAttendance v2.0 Toàn Tập</p>
+                <p className="text-[10px] text-slate-500 hidden sm:block">KTS TimeAttendance v2.0 Enterprise & Pro Multi-Branch</p>
               </div>
             </div>
           </div>
@@ -81,7 +88,7 @@ export default function UserGuide({ onBackToHome, onOpenOrder, onOpenLookup }) {
             <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Tìm nhanh tính năng..."
+              placeholder="Tìm kiếm tính năng (ADMS, lương, ca đêm...)"
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value.toLowerCase())}
               className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-blue-500 transition-all"
@@ -117,359 +124,510 @@ export default function UserGuide({ onBackToHome, onOpenOrder, onOpenLookup }) {
                       key={sec.id}
                       href={`#${sec.id}`}
                       onClick={() => setActiveSection(sec.id)}
-                      className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
+                      className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
                         isActive
-                          ? 'bg-blue-50 text-blue-700 font-bold border border-blue-200 shadow-xs'
-                          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                          ? 'bg-blue-50 text-blue-700 font-bold border border-blue-200/60 shadow-xs'
+                          : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                       }`}
                     >
-                      <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-blue-600' : 'text-slate-400'}`} />
-                      <span className="truncate">{sec.title}</span>
+                      <div className="flex items-center gap-2.5 truncate">
+                        <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-blue-600' : 'text-slate-400'}`} />
+                        <span className="truncate">{sec.title}</span>
+                      </div>
+                      {sec.badge && (
+                        <span className="ml-1.5 px-1.5 py-0.2 rounded text-[9px] font-extrabold bg-blue-600 text-white shrink-0">
+                          {sec.badge}
+                        </span>
+                      )}
                     </a>
                   );
                 })}
               </nav>
 
-              <div className="pt-4 mt-4 border-t border-slate-100 px-3">
-                <div className="p-3 rounded-xl bg-blue-50/70 border border-blue-100 text-blue-900 text-[11px] space-y-1">
-                  <p className="font-bold flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5 text-blue-600" /> Cần hỗ trợ trực tiếp?
+              <div className="pt-4 mt-4 border-t border-slate-100">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-[11px] text-slate-600 space-y-2">
+                  <div className="font-bold text-slate-900 flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-emerald-600" /> Hỗ Trợ Kỹ Thuật 24/7
+                  </div>
+                  <p className="text-[10px] leading-relaxed text-slate-500">
+                    Cần kỹ sư KTS hỗ trợ cài đặt hoặc cấu hình máy từ xa qua UltraView / AnyDesk?
                   </p>
-                  <p className="text-slate-600">Hotline & Zalo kỹ thuật UltraView:</p>
                   <a
                     href="https://zalo.me/0776980269"
                     target="_blank"
                     rel="noreferrer"
-                    className="font-bold text-blue-700 hover:text-blue-800 hover:underline block text-xs"
+                    className="block w-full py-1.5 text-center rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-[11px] transition-colors"
                   >
-                    0776.980.269
+                    Nhắn Zalo: 0776.980.269
                   </a>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Main Content */}
+          {/* Main Content Area */}
           <div className="lg:col-span-3 space-y-12">
             {/* 1. GETTING STARTED */}
             <section id="getting-started" className="scroll-mt-24 space-y-4">
               <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
                   <Cpu className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900">1. Cài Đặt & Khởi Động Phần Mềm</h2>
-                  <p className="text-xs text-slate-500">Các bước khởi chạy KTS TimeAttendance trên Windows</p>
+                  <h2 className="text-xl font-bold text-slate-900">1. Cài Đặt & Khởi Động Ứng Dụng</h2>
+                  <p className="text-xs text-slate-500">Chuẩn bị môi trường máy tính Windows 10 & 11 (64-bit)</p>
                 </div>
               </div>
 
               <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4 text-xs leading-relaxed">
-                <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  Yêu Cầu Hệ Thống
-                </div>
-                <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1">
-                  <li>Hệ điều hành: Windows 10 hoặc Windows 11 (64-bit).</li>
-                  <li>Bộ nhớ RAM: Tối thiểu 2GB (Khuyến nghị 4GB trở lên).</li>
-                  <li>Dung lượng ổ cứng trống: Tối thiểu 200MB.</li>
-                  <li>Mạng nội bộ (LAN): Cùng dải mạng Wi-Fi hoặc Router cắm dây mạng với máy chấm công.</li>
-                </ul>
+                <p className="text-slate-700 font-medium">
+                  KTS TimeAttendance hỗ trợ 2 hình thức cài đặt tối ưu cho doanh nghiệp:
+                </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800">
-                      Cách 1: Bộ Cài Tự Động (Setup.exe)
-                    </span>
-                    <h4 className="font-bold text-slate-900 text-xs">KTS_TimeAttendance_Setup.exe</h4>
+                    <div className="flex items-center gap-2 font-bold text-slate-900 text-xs">
+                      <Download className="w-4 h-4 text-blue-600" />
+                      <span>Bản Cài Đặt Tự Động (Setup .exe)</span>
+                    </div>
                     <p className="text-slate-600 text-[11px]">
-                      1. Nhấp đúp vào file tải về để mở bộ cài đặt.<br />
-                      2. Chọn thư mục cài đặt (mặc định <code>C:\Program Files\KTS TimeAttendance</code>).<br />
-                      3. Tích chọn "Tạo biểu tượng ngoài Desktop" và bấm <strong>Cài đặt</strong>.<br />
-                      4. Mở app trực tiếp từ icon ngoài Desktop. Phần mềm khởi động êm ái, hoàn toàn <strong>không hiện cửa sổ đen (CMD)</strong>.
+                      1. Tải file <code>KTS_TimeAttendance_Commercial_Setup_v2.0.exe</code>.<br />
+                      2. Nhấp đúp chuột để trình cài đặt tự động hoàn tất trong 5 giây.<br />
+                      3. Biểu tượng phần mềm xuất hiện ngoài màn hình Desktop sẵn sàng mở.
                     </p>
                   </div>
 
                   <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800">
-                      Cách 2: Bản Di Động (Portable .zip)
-                    </span>
-                    <h4 className="font-bold text-slate-900 text-xs">KTS_TimeAttendance_Portable.zip</h4>
+                    <div className="flex items-center gap-2 font-bold text-slate-900 text-xs">
+                      <Monitor className="w-4 h-4 text-slate-700" />
+                      <span>Bản Di Động Không Cần Cài (Portable .zip)</span>
+                    </div>
                     <p className="text-slate-600 text-[11px]">
-                      1. Tải file <code>.zip</code> về máy, nhấp chuột phải chọn <strong>Extract All... (Giải nén)</strong>.<br />
-                      2. Lưu vào ổ đĩa bất kỳ (như <code>D:\KTS_TimeAttendance</code> hoặc USB di động).<br />
-                      3. Nhấp đúp vào <code>CHAY_APP_KHONG_CMD.vbs</code> hoặc <code>KTS_TimeAttendance.exe</code> để dùng ngay mà không cần cài đặt.
+                      1. Tải file nén <code>KTS_TimeAttendance_Portable_v2.0.zip</code>.<br />
+                      2. Giải nén vào thư mục bất kỳ (ví dụ: <code>D:\KTS_TimeAttendance</code>) hoặc USB.<br />
+                      3. Chạy trực tiếp file <code>KTS_TimeAttendance.exe</code>.
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-[11px] flex items-start gap-2">
-                  <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-amber-600" />
+                <div className="p-3 rounded-xl bg-blue-50 border border-blue-200 text-blue-900 text-[11px] flex items-center justify-between">
                   <span>
-                    <strong>Mẹo bảo mật Windows:</strong> Nếu Windows SmartScreen hiển thị cảnh báo "Windows protected your PC", hãy bấm vào <strong>More info</strong> và chọn <strong>Run anyway</strong> để tiếp tục.
+                    🔑 <strong>Tài khoản mặc định:</strong> Tên đăng nhập: <code>admin</code> | Mật khẩu: <code>admin123</code>
                   </span>
+                  <button
+                    onClick={() => copyToClipboard('admin\nadmin123', 'acc')}
+                    className="p-1 hover:bg-blue-100 rounded text-blue-700 transition-colors flex items-center gap-1 text-[10px] font-bold"
+                  >
+                    {copiedText === 'acc' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                    <span>Sao chép</span>
+                  </button>
                 </div>
               </div>
             </section>
 
-            {/* 2. DEVICE CONNECTION */}
+            {/* 2. DEVICE CONNECTION LAN */}
             <section id="device-connection" className="scroll-mt-24 space-y-4">
               <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
                   <Wifi className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900">2. Kết Nối Máy Chấm Công (IP LAN)</h2>
-                  <p className="text-xs text-slate-500">Kết nối máy chấm công vân tay, khuôn mặt, thẻ từ qua mạng nội bộ</p>
+                  <h2 className="text-xl font-bold text-slate-900">2. Kết Nối Máy Chấm Công Mạng LAN (Radar Siêu Tốc 0.7s)</h2>
+                  <p className="text-xs text-slate-500">Tự động nhận diện thiết bị nội bộ mà không cần khai báo IP thủ công</p>
                 </div>
               </div>
 
               <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4 text-xs leading-relaxed">
-                <p className="text-slate-700">
-                  Phần mềm KTS TimeAttendance v2.0 hỗ trợ 100% các dòng máy chấm công phổ biến tại Việt Nam: 
-                  <strong> Ronald Jack</strong> (RJ 1000, RJ 3000, RJ 5000...), 
-                  <strong> ZKTeco</strong> (K14, K40, F18, G1, G2, MB20...), 
-                  <strong> Gigata</strong> (T8, T9...), <strong>Wise Eye</strong>, Granding, Mita... thông qua chuẩn giao tiếp IP Port 4370.
-                </p>
-
                 <div className="space-y-3">
-                  <h4 className="font-bold text-slate-900 text-xs flex items-center gap-1.5">
-                    <span className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">1</span>
-                    Bước 1: Thiết lập địa chỉ IP trên máy chấm công
-                  </h4>
-                  <div className="pl-7 text-slate-600 space-y-1">
-                    <p>• Nhấn giữ phím <strong>M/OK</strong> trên máy chấm công để vào Menu quản trị.</p>
-                    <p>• Chọn mục <strong>Thiết lập liên kết (Comm.)</strong> -&gt; chọn <strong>Mạng (Ethernet / TCP/IP)</strong>.</p>
-                    <p>• Đặt địa chỉ IP tĩnh cùng dải với mạng công ty. Ví dụ nếu modem là <code>192.168.1.1</code> thì đặt IP máy chấm công là <code>192.168.1.201</code>.</p>
-                    <p>• Subnet Mask: <code>255.255.255.0</code>, Gateway: <code>192.168.1.1</code>.</p>
-                    <p>• Cổng giao tiếp (Port): Giữ nguyên mặc định <code>4370</code>. ComKey: <code>0</code>.</p>
+                  <div className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold shrink-0">1</span>
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-xs">Cắm dây mạng LAN vào máy chấm công:</h4>
+                      <p className="text-slate-600 text-[11px] mt-0.5">
+                        Đảm bảo đèn mạng RJ45 phía sau máy chấm công sáng nháy xanh. Máy chấm công và máy tính cài phần mềm KTS cần kết nối vào cùng 1 Router/Modem mạng nội bộ.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold shrink-0">2</span>
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-xs">Quét Radar LAN tự động chỉ mất 0.7 giây:</h4>
+                      <p className="text-slate-600 text-[11px] mt-0.5">
+                        Tại menu <strong>Máy Chấm Công</strong>, nhấn nút <strong>"Tự Động Nhận Diện Máy (LAN)"</strong>. KTS Scanner sử dụng thuật toán quét đa luồng 64 workers, quét toàn bộ dải IP (192.168.1.1 - 254) trên cổng <code>4370</code> và phát hiện ngay lập tức máy Ronald Jack, Gigata T9, ZKTeco có trong mạng.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold shrink-0">3</span>
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-xs">Lưu cấu hình và kiểm tra kết nối (Ping Test):</h4>
+                      <p className="text-slate-600 text-[11px] mt-0.5">
+                        Sau khi tìm thấy máy, bấm <strong>Thêm Vào Danh Sách</strong>. Nhấn <strong>Kiểm Tra Kết Nối</strong>: Nếu hiện <em>"Kết Nối Thành Công"</em> màu xanh lá là thiết bị đã sẵn sàng giao tiếp!
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <h4 className="font-bold text-slate-900 text-xs flex items-center gap-1.5">
-                    <span className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">2</span>
-                    Bước 2: Thêm thiết bị vào phần mềm KTS TimeAttendance
-                  </h4>
-                  <div className="pl-7 text-slate-600 space-y-1">
-                    <p>• Trên phần mềm KTS, bấm vào menu <strong>Máy Chấm Công</strong> ở thanh bên trái.</p>
-                    <p>• Bấm nút <strong>+ Thêm Máy Mới</strong>.</p>
-                    <p>• Điền thông tin:
-                      <ul className="list-disc list-inside pl-3 pt-1 space-y-0.5">
-                        <li><strong>Tên máy:</strong> Ví dụ <em>Máy Cửa Chính</em> hoặc <em>Gigata T9 Xưởng 1</em>.</li>
-                        <li><strong>Địa chỉ IP:</strong> Nhập đúng IP đã đặt (vd: <code>192.168.1.201</code>).</li>
-                        <li><strong>Cổng Port:</strong> <code>4370</code> (mặc định).</li>
-                        <li><strong>ComKey:</strong> <code>0</code> (hoặc theo mật mã bạn đã đặt trên máy).</li>
-                      </ul>
-                    </p>
-                    <p>• Bấm nút <strong>Kiểm Tra Kết Nối (Ping Test)</strong>. Khi màn hình hiện thông báo xanh <em>"Kết nối thành công"</em>, bấm <strong>Lưu Thiết Bị</strong>.</p>
-                  </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-[11px]">
+                  💡 <strong>Thông số mặc định tiêu chuẩn:</strong> Cổng kết nối (Port): <code>4370</code> (UDP/TCP) | Mật mã kết nối (ComKey): <code>0</code>.
                 </div>
               </div>
             </section>
 
-            {/* 3. HR MANAGEMENT */}
+            {/* 3. MULTI-BRANCH & CLOUD ADMS (PRO FEATURE) */}
+            <section id="multi-branch-cloud" className="scroll-mt-24 space-y-4">
+              <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
+                <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+                  <Globe className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-bold text-slate-900">3. Chấm Công Đa Chi Nhánh & Cloud Push ADMS</h2>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xs">
+                      Gói Pro
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-500">Chấm công chuỗi cửa hàng toàn quốc xuyên tường lửa / NAT không cần IP tĩnh</p>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-5 text-xs leading-relaxed">
+                <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200 text-blue-900 space-y-2">
+                  <div className="font-bold text-xs flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-blue-600" /> Giải Pháp Đa Chi Nhánh Đột Phá Của KTS
+                  </div>
+                  <p className="text-[11px] leading-relaxed text-blue-800">
+                    Trước đây, muốn chấm công nhiều chi nhánh ở các tỉnh thành khác nhau (Hà Nội, TP.HCM, Đà Nẵng...), doanh nghiệp bắt buộc phải <strong>thuê IP tĩnh đắt đỏ</strong> và <strong>mở port modem (NAT) phức tạp</strong> dễ bị hacker tấn công. Với KTS TimeAttendance Pro, máy chấm công tự động gọi về máy chủ KTS qua giao thức đám mây <strong>ZKTeco Native ADMS Cloud Push</strong> ngay khi nhân viên quẹt vân tay!
+                  </p>
+                </div>
+
+                {/* Phương án 1: ADMS */}
+                <div className="space-y-3">
+                  <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
+                    <span className="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 text-[11px]">Cách 1</span>
+                    Cấu Hình Trực Tiếp ZKTeco Cloud Server (ADMS) Trên Máy Chấm Công
+                  </h3>
+                  <p className="text-slate-600 text-[11px]">
+                    Áp dụng cho mọi dòng máy ZKTeco / Ronald Jack có hỗ trợ tính năng Web Server / Cloud Server / ADMS:
+                  </p>
+
+                  <div className="space-y-2 pl-2">
+                    <div className="flex items-start gap-2 text-slate-700 text-[11px]">
+                      <span className="font-bold text-blue-600">Bước 1:</span>
+                      <span>Trên bàn phím máy chấm công, nhấn giữ phím <strong>M/OK</strong> để vào Menu Quản Trị.</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-slate-700 text-[11px]">
+                      <span className="font-bold text-blue-600">Bước 2:</span>
+                      <span>Chọn mục <strong>Thiết Lập Liên Lạc (Comm Settings)</strong> &gt; Chọn <strong>Thiết Lập Máy Chủ Đám Mây (Cloud Server / Webserver Settings / ADMS)</strong>.</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-slate-700 text-[11px]">
+                      <span className="font-bold text-blue-600">Bước 3:</span>
+                      <span>
+                        Điền các thông số máy chủ KTS:<br />
+                        • <strong>Địa Chỉ Máy Chủ (Server Address):</strong> Nhập IP Công cộng hoặc Tên miền máy chủ KTS của bạn (VD: <code>server.kts.vn</code> hoặc IP WAN của trụ sở chính).<br />
+                        • <strong>Cổng Máy Chủ (Server Port):</strong> Nhập cổng web <code>80</code> hoặc cổng ứng dụng <code>8000</code>.<br />
+                        • <strong>Bật Máy Chủ Đám Mây (Enable Cloud Server):</strong> Chọn <strong>BẬT (Enabled / Yes)</strong>.
+                      </span>
+                    </div>
+                    <div className="flex items-start gap-2 text-slate-700 text-[11px]">
+                      <span className="font-bold text-blue-600">Bước 4:</span>
+                      <span>Lưu lại. Góc màn hình máy chấm công sẽ xuất hiện <strong>biểu tượng quả cầu trái đất hoặc đám mây màu xanh</strong>. Từ lúc này, mỗi lượt quẹt vân tay tại chi nhánh sẽ bắn dữ liệu Real-time về máy chủ KTS trong 0.5 giây!</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Phương án 2: Edge Agent */}
+                <div className="space-y-3 pt-3 border-t border-slate-100">
+                  <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
+                    <span className="px-2 py-0.5 rounded bg-slate-200 text-slate-800 text-[11px]">Cách 2</span>
+                    Dùng KTS Edge Sync Agent Cho Các Dòng Máy Chấm Công Đời Cũ
+                  </h3>
+                  <p className="text-slate-600 text-[11px]">
+                    Dành cho các cơ sở sử dụng dòng máy đời cũ chỉ hỗ trợ cổng mạng UDP 4370 truyền thống:
+                  </p>
+                  <p className="text-slate-700 text-[11px]">
+                    • Tại chi nhánh, chỉ cần để 1 máy tính thu ngân hoặc laptop chạy file <code>kts_edge_sync.exe</code> (dung lượng siêu nhẹ ~8MB, chạy ngầm không tốn RAM).<br />
+                    • Agent tự động đọc dữ liệu máy chấm công trong mạng nội bộ chi nhánh và đồng bộ mã hóa HTTPS về trung tâm.
+                  </p>
+                </div>
+
+                {/* Quản lý danh mục Chi nhánh */}
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                  <h4 className="font-bold text-slate-900 text-xs">Quản Lý Danh Mục Chi Nhánh Trong Phần Mềm:</h4>
+                  <p className="text-slate-600 text-[11px]">
+                    1. Vào menu <strong>Quản Lý Chi Nhánh</strong>: Bấm <strong>Thêm Chi Nhánh</strong> (ví dụ: <em>Chi nhánh Q1 TP.HCM, Chi nhánh Cầu Giấy HN, Kho Bình Dương</em>).<br />
+                    2. Gán máy chấm công vào chi nhánh tương ứng.<br />
+                    3. Phân bổ nhân sự trực thuộc chi nhánh.<br />
+                    4. Khi xuất báo cáo hoặc bảng lương, bạn có thể lọc xem riêng từng chi nhánh hoặc xem toàn bộ công ty trên 1 trang duy nhất!
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* 4. HR MANAGEMENT */}
             <section id="hr-management" className="scroll-mt-24 space-y-4">
               <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold">
                   <Users className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900">3. Quản Lý Nhân Sự & Phòng Ban</h2>
-                  <p className="text-xs text-slate-500">Tổ chức hồ sơ nhân viên, mã số chấm công và xóa nhân sự nghỉ việc</p>
-                </div>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4 text-xs leading-relaxed">
-                <div className="space-y-2">
-                  <h4 className="font-bold text-slate-900 text-xs">Thêm Mới Hồ Sơ Nhân Viên:</h4>
-                  <p className="text-slate-600">
-                    Vào mục <strong>Quản Lý Nhân Sự</strong> -&gt; Bấm nút <strong>+ Thêm Nhân Viên</strong>:
-                  </p>
-                  <ul className="list-disc list-inside space-y-1 text-slate-600 pl-2">
-                    <li><strong>Mã Nhân Viên:</strong> Mã số nội bộ doanh nghiệp (ví dụ: <code>NV001</code>, <code>NV002</code>...).</li>
-                    <li><strong>Mã Chấm Công (Enroll Number):</strong> Số thứ tự được gán trên máy chấm công (ví dụ: <code>1</code>, <code>2</code>, <code>101</code>...). Số này cực kỳ quan trọng để hệ thống khớp đúng người khi nhân viên quẹt vân tay.</li>
-                    <li><strong>Họ và tên:</strong> Tên đầy đủ của nhân sự (ví dụ: Nguyễn Văn Hùng).</li>
-                    <li><strong>Phòng ban & Chức vụ:</strong> Chọn bộ phận tương ứng (Phòng Kế toán, Kinh doanh, Xưởng sản xuất, Kho vận...).</li>
-                    <li><strong>Ngày vào làm, SĐT, Email:</strong> Nhập thông tin liên hệ của nhân sự.</li>
-                  </ul>
-                </div>
-
-                <div className="space-y-2 pt-2 border-t border-slate-100">
-                  <h4 className="font-bold text-slate-900 text-xs">Chỉnh Sửa & Xóa Nhân Sự:</h4>
-                  <p className="text-slate-600">
-                    • <strong>Chỉnh sửa:</strong> Bấm vào biểu tượng cây bút tại dòng nhân sự để cập nhật số điện thoại, đổi phòng ban hoặc sửa chức vụ.<br />
-                    • <strong>Xóa nhân sự:</strong> Khi có nhân viên thôi việc, bấm vào nút thùng rác <strong>Xóa</strong> màu đỏ. Hệ thống sẽ hỏi xác nhận để tránh bấm nhầm và đảm bảo toàn vẹn dữ liệu.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            {/* 4. SYNC DATA */}
-            <section id="sync-data" className="scroll-mt-24 space-y-4">
-              <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">
-                  <Fingerprint className="w-5 h-5" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-slate-900">4. Đồng Bộ Vân Tay & Nhân Viên Hai Chiều</h2>
-                  <p className="text-xs text-slate-500">Truyền nhận dữ liệu giữa máy vi tính và máy chấm công</p>
+                  <h2 className="text-xl font-bold text-slate-900">4. Quản Lý Hồ Sơ Nhân Sự & Phòng Ban</h2>
+                  <p className="text-xs text-slate-500">Tổ chức cây cơ cấu phòng ban và nhập danh sách từ file Excel</p>
                 </div>
               </div>
 
               <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4 text-xs leading-relaxed">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl bg-blue-50/60 border border-blue-100 space-y-2">
-                    <h4 className="font-bold text-blue-900 text-xs flex items-center gap-1.5">
-                      <Download className="w-4 h-4 text-blue-600" /> Tải từ Máy Chấm Công về Máy Tính
-                    </h4>
-                    <p className="text-slate-600 text-[11px] leading-relaxed">
-                      Sử dụng khi bạn vừa đăng ký dấu vân tay hoặc quét khuôn mặt cho nhân viên mới ngay tại máy chấm công.<br />
-                      👉 Vào <strong>Máy Chấm Công</strong> -&gt; Bấm nút <strong>Đồng Bộ</strong> -&gt; Chọn <strong>Tải nhân viên & vân tay về máy tính</strong>. Phần mềm sẽ tự động lấy danh sách và lưu vào cơ sở dữ liệu.
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                    <h4 className="font-bold text-slate-900 text-xs">1. Nhập Nhân Sự Hàng Loạt Từ Excel:</h4>
+                    <p className="text-slate-600 text-[11px]">
+                      • Bấm nút <strong>"Tải File Mẫu Excel"</strong> trong mục Nhân sự.<br />
+                      • Điền danh sách nhân viên: Mã NV, Họ tên, Mã chấm công (Enroll ID), Phòng ban, Chức vụ, Mức lương cơ bản, Ngày vào làm.<br />
+                      • Bấm <strong>"Nhập Từ File Excel"</strong> để nạp hàng trăm nhân viên vào hệ thống trong 1 giây.
                     </p>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-emerald-50/60 border border-emerald-100 space-y-2">
-                    <h4 className="font-bold text-emerald-900 text-xs flex items-center gap-1.5">
-                      <Cpu className="w-4 h-4 text-emerald-600" /> Nạp từ Máy Tính lên Máy Chấm Công
-                    </h4>
-                    <p className="text-slate-600 text-[11px] leading-relaxed">
-                      Sử dụng khi bạn tạo trước danh sách nhân viên trên phần mềm hoặc khi doanh nghiệp mua thêm máy chấm công mới thứ 2, thứ 3.<br />
-                      👉 Bấm <strong>Tải nhân viên lên máy chấm công</strong>: Danh sách tên và ID sẽ được truyền thẳng lên máy chấm công mà không cần ra máy gõ tay từng chữ.
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                    <h4 className="font-bold text-slate-900 text-xs">2. Phân Quyền & Chi Nhánh:</h4>
+                    <p className="text-slate-600 text-[11px]">
+                      • Gắn mỗi nhân viên vào 1 Chi Nhánh và 1 Phòng Ban xác định.<br />
+                      • Định cấu hình tài khoản phân quyền: Quản trị viên (Admin), Nhân sự (HR), Kế toán (Accountant).
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-[11px] flex items-center justify-between">
-                  <span>
-                    ⏰ <strong>Đồng bộ giờ tự động:</strong> Bấm <strong>"Đồng bộ thời gian"</strong> để đồng hồ máy chấm công khớp 100% từng giây theo giờ đồng hồ máy tính của bạn.
-                  </span>
+                <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-[11px]">
+                  ⚠️ <strong>Lưu ý quan trọng:</strong> <em>Mã Chấm Công (Enroll ID)</em> trong phần mềm phải trùng khớp 100% với số ID đăng ký ngón tay trên máy chấm công để hệ thống ghép đúng công của từng người.
                 </div>
               </div>
             </section>
 
-            {/* 5. SHIFTS & SCHEDULES */}
-            <section id="shifts-schedules" className="scroll-mt-24 space-y-4">
+            {/* 5. SYNC FINGERPRINT DATA */}
+            <section id="sync-data" className="scroll-mt-24 space-y-4">
               <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
-                  <Clock className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+                  <Fingerprint className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900">5. Cấu Hình Ca & Giờ Làm Việc</h2>
-                  <p className="text-xs text-slate-500">Thiết lập ca hành chính, ca xoay, ca đêm, luật đi trễ và tính tăng ca</p>
+                  <h2 className="text-xl font-bold text-slate-900">5. Đồng Bộ Vân Tay & Nhân Viên Với Thiết Bị</h2>
+                  <p className="text-xs text-slate-500">Tải dữ liệu 2 chiều giữa máy tính và máy chấm công</p>
                 </div>
               </div>
 
               <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4 text-xs leading-relaxed">
-                <div className="space-y-2">
-                  <h4 className="font-bold text-slate-900 text-xs">Các Loại Ca Làm Việc Hỗ Trợ:</h4>
-                  <ul className="list-disc list-inside space-y-1 text-slate-600 pl-2">
-                    <li><strong>Ca Hành Chính (8 giờ):</strong> Giờ vào: 08:00, Giờ ra: 17:30 (nghỉ trưa 12:00 - 13:30).</li>
-                    <li><strong>Ca Theo Buổi:</strong> Ca sáng (07:30 - 11:30), Ca chiều (13:00 - 17:00), Ca tối (18:00 - 22:00).</li>
-                    <li><strong>Ca 12 Tiếng Xưởng Sản Xuất:</strong> Ca ngày (06:00 - 18:00), Ca đêm (18:00 - 06:00 sáng hôm sau).</li>
-                  </ul>
-                </div>
+                <div className="space-y-3">
+                  <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5">
+                    <span className="font-bold text-slate-900 block text-xs">
+                      📥 Tải Dữ Liệu Từ Máy Chấm Công Về Máy Tính (Download Users):
+                    </span>
+                    <p className="text-slate-600 text-[11px]">
+                      Khi nhân viên mới đã lấy dấu vân tay trực tiếp trên máy chấm công: Bạn vào menu <strong>Máy Chấm Công</strong> &gt; Chọn máy &gt; Bấm nút <strong>"Tải Nhân Viên & Vân Tay Về Máy Tính"</strong>. Toàn bộ ID, tên và mẫu vân tay sẽ được sao lưu an toàn vào cơ sở dữ liệu KTS.
+                    </p>
+                  </div>
 
-                <div className="space-y-2 pt-2 border-t border-slate-100">
-                  <h4 className="font-bold text-slate-900 text-xs">Cài Đặt Quy Tắc Chấm Công:</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                      <span className="font-bold text-slate-900 block mb-1">Cho phép đi trễ</span>
-                      <p className="text-slate-600 text-[11px]">Cho phép trễ 5 - 15 phút không bị trừ công hoặc tính lỗi vi phạm.</p>
-                    </div>
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                      <span className="font-bold text-slate-900 block mb-1">Khoảng cách 2 lần quẹt</span>
-                      <p className="text-slate-600 text-[11px]">Tự động lọc bỏ các lần quẹt liên tục trong vòng 1-2 phút của cùng 1 người.</p>
-                    </div>
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                      <span className="font-bold text-slate-900 block mb-1">Tính giờ Tăng Ca (OT)</span>
-                      <p className="text-slate-600 text-[11px]">Tự động cộng giờ làm thêm khi nhân viên quẹt thẻ về trễ sau giờ tan ca quy định.</p>
-                    </div>
+                  <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5">
+                    <span className="font-bold text-slate-900 block text-xs">
+                      📤 Tải Dữ Liệu Từ Máy Tính Lên Máy Chấm Công (Upload Users):
+                    </span>
+                    <p className="text-slate-600 text-[11px]">
+                      Khi doanh nghiệp lắp thêm máy chấm công mới ở cửa ra vào khác hoặc chi nhánh mới: Bạn không cần bắt nhân viên lấy lại vân tay từ đầu! Chỉ cần bấm <strong>"Tải Lên Máy Chấm Công"</strong>, hệ thống tự động đẩy toàn bộ dấu vân tay có sẵn lên máy mới chỉ trong vài giây.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5">
+                    <span className="font-bold text-slate-900 block text-xs">
+                      🗑️ Xóa Nhân Viên Nghỉ Việc Khỏi Máy Chấm Công Từ Xa:
+                    </span>
+                    <p className="text-slate-600 text-[11px]">
+                      Khi nhân sự thôi việc, bấm nút <strong>Xóa Khỏi Thiết Bị</strong>. Phần mềm tự động gửi lệnh xóa quyền truy cập trên máy chấm công ngay lập tức để đảm bảo an ninh nội bộ.
+                    </p>
                   </div>
                 </div>
               </div>
             </section>
 
-            {/* 6. ATTENDANCE & LOGS */}
+            {/* 6. SHIFTS & SCHEDULES */}
+            <section id="shifts-schedules" className="scroll-mt-24 space-y-4">
+              <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
+                <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+                  <Clock className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-slate-900">6. Cấu Hình Ca Làm Việc & Ca Đêm Qua Ngày</h2>
+                  <p className="text-xs text-slate-500">Hỗ trợ ca hành chính, ca gãy, ca kíp xoay vòng và làm ca đêm 24/7</p>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4 text-xs leading-relaxed">
+                <div className="space-y-3">
+                  <h4 className="font-bold text-slate-900 text-xs">Thiết Lập Các Loại Ca Linh Hoạt:</h4>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div className="p-3 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
+                      <div className="font-bold text-slate-900 text-xs">1. Ca Hành Chính</div>
+                      <p className="text-[11px] text-slate-600">
+                        Vào làm: 08:00 - Nghỉ trưa: 12:00-13:30 - Tan làm: 17:30. Cho phép đi trễ/về sớm tối đa 15 phút.
+                      </p>
+                    </div>
+
+                    <div className="p-3 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
+                      <div className="font-bold text-slate-900 text-xs">2. Ca Kíp Sản Xuất</div>
+                      <p className="text-[11px] text-slate-600">
+                        Ca 1 (06:00-14:00), Ca 2 (14:00-22:00). Phù hợp xưởng may, bao bì, cơ khí luân chuyển nhân sự.
+                      </p>
+                    </div>
+
+                    <div className="p-3 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
+                      <div className="font-bold text-slate-900 text-xs">3. Ca Đêm Qua Ngày (Overnight)</div>
+                      <p className="text-[11px] text-slate-600">
+                        Vào: 22:00 đêm - Ra: 06:00 sáng hôm sau. Tự động tính đúng ngày công mà không bị tách đôi ngày.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                  <h4 className="font-bold text-slate-900 text-xs">⭐ Thuật Toán Auto-Shift Tự Động Tìm Ca Thông Minh:</h4>
+                  <p className="text-slate-600 text-[11px]">
+                    Nếu doanh nghiệp có nhiều ca kíp xoay vòng, bạn không cần phải xếp lịch trước cho từng nhân viên mỗi tuần. Thuật toán độc quyền của KTS sẽ tự động so sánh giờ quẹt thẻ thực tế của nhân viên với danh sách các ca trong công ty để tự nhận diện chính xác ca làm việc đó!
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* 7. ATTENDANCE LOGS */}
             <section id="attendance-logs" className="scroll-mt-24 space-y-4">
               <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-800 flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center font-bold">
                   <Calendar className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900">6. Tải Log & Theo Dõi Chấm Công Hằng Ngày</h2>
-                  <p className="text-xs text-slate-500">Kéo dữ liệu quẹt thẻ thực tế và cập nhật chấm công thủ công</p>
+                  <h2 className="text-xl font-bold text-slate-900">7. Tải Log & Giám Sát Chấm Công Thời Gian Thực</h2>
+                  <p className="text-xs text-slate-500">Giám sát quẹt thẻ trực tiếp và xử lý bổ sung công thủ công</p>
                 </div>
               </div>
 
               <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4 text-xs leading-relaxed">
                 <div className="space-y-2">
                   <h4 className="font-bold text-slate-900 text-xs">Thao Tác Tải Dữ Liệu Chấm Công Mới Nhất:</h4>
-                  <p className="text-slate-600">
+                  <p className="text-slate-600 text-[11px]">
                     1. Mở menu <strong>Dữ Liệu Chấm Công</strong>.<br />
-                    2. Chọn máy chấm công cần lấy dữ liệu (hoặc chọn tất cả máy).<br />
+                    2. Chọn máy chấm công hoặc chi nhánh cần lấy dữ liệu (hoặc chọn tất cả máy).<br />
                     3. Chọn khoảng ngày cần tải (ví dụ: từ ngày 01 đến ngày hiện tại).<br />
-                    4. Bấm nút <strong>Tải Dữ Liệu Chấm Công</strong>: Toàn bộ hàng ngàn lượt quẹt vân tay sẽ được nạp về máy tính trong vòng <strong>2 đến 5 giây</strong>.
+                    4. Bấm nút <strong>Tải Dữ Liệu Chấm Công</strong>: Hàng ngàn lượt quẹt vân tay sẽ được nạp về máy tính trong vòng <strong>2 đến 5 giây</strong>.
                   </p>
                 </div>
 
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-                  <h4 className="font-bold text-slate-900 text-xs">Xem Chi Tiết & Bổ Sung Công Thủ Công:</h4>
+                  <h4 className="font-bold text-slate-900 text-xs">Cơ Chế Khử Trùng Thẻ (Anti-Passback Debounce):</h4>
                   <p className="text-slate-600 text-[11px]">
-                    • <strong>Xem bảng công theo ngày:</strong> Hiển thị rõ Giờ Vào đầu tiên (Check-In), Giờ Ra cuối cùng (Check-Out), tổng số giờ làm việc, trạng thái Đi đúng giờ, Đi trễ, Về sớm.<br />
-                    • <strong>Bổ sung chấm công:</strong> Dành cho nhân sự đi gặp khách hàng, quên quẹt vân tay hoặc đi công tác ngoài: Bấm <strong>Thêm Chấm Công Thủ Công</strong>, chọn nhân viên và nhập giờ kèm lý do.
+                    Nhân viên lo sợ máy chưa nhận nên thường quẹt liên tiếp 2-3 lần trong vòng 1-2 phút. KTS tự động áp dụng bộ lọc 5 phút: Giữ lại lượt quẹt đầu tiên và tự động loại bỏ các lượt quẹt trùng lặp, giúp dữ liệu luôn trong sạch và chính xác.
+                  </p>
+                </div>
+
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-[11px]">
+                  ✍️ <strong>Thêm Chấm Công Bổ Sung:</strong> Dành cho nhân sự đi gặp khách hàng, quên quẹt vân tay hoặc đi công tác: Bấm nút <strong>"Bổ Sung Chấm Công"</strong>, chọn nhân viên, ngày giờ và nhập lý do phê duyệt.
+                </div>
+              </div>
+            </section>
+
+            {/* 8. AUTOMATIC PAYROLL SYSTEM (NEW FEATURE) */}
+            <section id="payroll-system" className="scroll-mt-24 space-y-4">
+              <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+                  <Calculator className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-bold text-slate-900">8. Tính Lương Tự Động & Bảng Lương Kế Toán</h2>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-emerald-600 text-white shadow-xs">
+                      Chuẩn Kế Toán 2026
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-500">Tự động tính tiền lương, hệ số tăng ca OT, phụ cấp ca đêm và khấu trừ bảo hiểm</p>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4 text-xs leading-relaxed">
+                <p className="text-slate-700 font-medium">
+                  Tính năng <strong>Tính Lương Tự Động (Payroll Engine)</strong> tích hợp sẵn trong KTS TimeAttendance loại bỏ hoàn toàn việc nhân viên kế toán phải cộng trừ thủ công bằng file Excel rời rạc:
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
+                    <h4 className="font-bold text-slate-900 text-xs">Hệ Số Tăng Ca (OT) Tự Động:</h4>
+                    <ul className="text-slate-600 text-[11px] space-y-1">
+                      <li>• <strong>Ngày thường:</strong> Nhân hệ số <strong>1.5x</strong> tiền lương giờ.</li>
+                      <li>• <strong>Ngày nghỉ cuối tuần (Chủ nhật):</strong> Nhân hệ số <strong>2.0x</strong>.</li>
+                      <li>• <strong>Ngày nghỉ Lễ, Tết:</strong> Nhân hệ số <strong>3.0x</strong>.</li>
+                    </ul>
+                  </div>
+
+                  <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
+                    <h4 className="font-bold text-slate-900 text-xs">Phụ Cấp Ca Đêm & Khấu Trừ:</h4>
+                    <ul className="text-slate-600 text-[11px] space-y-1">
+                      <li>• <strong>Phụ cấp ca đêm:</strong> Tự động cộng <strong>+30%</strong> tiền lương giờ khi làm việc từ 22:00 đến 06:00 sáng theo Luật Lao Động.</li>
+                      <li>• <strong>Bảo hiểm bắt buộc:</strong> Tự động trích trừ <strong>10.5%</strong> (BHXH 8%, BHYT 1.5%, BHTN 1%).</li>
+                      <li>• <strong>Tạm ứng & Phạt đi trễ:</strong> Tự động đối trừ vào Lương Thực Nhận (Net).</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 space-y-1.5">
+                  <div className="font-bold text-xs">Thao Tác Tính Lương & Xuất File:</div>
+                  <p className="text-[11px] leading-relaxed">
+                    1. Mở menu <strong>Bảng Lương (Payroll)</strong> &gt; Chọn Tháng & Năm cần chốt lương.<br />
+                    2. Bấm nút <strong>"Tính Toán Lương Tự Động"</strong>: Hệ thống tổng hợp hàng trăm nhân viên chỉ trong 1.2 giây.<br />
+                    3. Bấm <strong>"Xuất Bảng Lương Excel"</strong> để tải về file bảng lương đã định dạng sẵn tiêu đề, công thức tính và ô ký tên sẵn sàng in ấn gửi ban giám đốc!
                   </p>
                 </div>
               </div>
             </section>
 
-            {/* 7. REPORTS & EXCEL */}
+            {/* 9. REPORTS & EXCEL */}
             <section id="reports-excel" className="scroll-mt-24 space-y-4">
               <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center font-bold">
                   <FileSpreadsheet className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900">7. Báo Cáo Thống Kê & Xuất File Excel Chuẩn</h2>
-                  <p className="text-xs text-slate-500">Tự động tổng hợp ngày công và xuất file Excel cho phòng kế toán</p>
+                  <h2 className="text-xl font-bold text-slate-900">9. Báo Cáo Thống Kê & Bảng Công Ma Trận 31 Ngày</h2>
+                  <p className="text-xs text-slate-500">Mẫu báo cáo Excel chuyên nghiệp chuẩn văn phòng doanh nghiệp Việt Nam</p>
                 </div>
               </div>
 
               <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4 text-xs leading-relaxed">
-                <p className="text-slate-700">
-                  Mục <strong>Báo Cáo Thống Kê</strong> giúp tự động hóa 100% công đoạn tính toán ngày công thủ công bằng sổ sách:
-                </p>
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5">
-                    <h4 className="font-bold text-slate-900 text-xs">Bảng Tổng Hợp Công Tháng</h4>
+                    <h4 className="font-bold text-slate-900 text-xs">Bảng Chấm Công Ma Trận 31 Ngày:</h4>
                     <p className="text-slate-600 text-[11px]">
-                      Thống kê theo từng nhân viên trong tháng: Tổng ngày công thực tế, tổng số phút đi trễ, tổng số phút về sớm, tổng số giờ tăng ca (OT).
+                      Hiển thị trực quan từng ngày trong tháng từ ngày 1 đến ngày 31 của từng nhân viên (Ngày đi làm, ngày chủ nhật, ngày nghỉ phép, số giờ công cụ thể).
                     </p>
                   </div>
                   <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5">
-                    <h4 className="font-bold text-slate-900 text-xs">Bảng Chấm Công Chi Tiết 31 Ngày</h4>
+                    <h4 className="font-bold text-slate-900 text-xs">Bảng Tổng Hợp Công Tháng:</h4>
                     <p className="text-slate-600 text-[11px]">
-                      Hiển thị trực quan ma trận từng ngày trong tháng của từng nhân viên (Ngày đi làm, ngày chủ nhật, ngày nghỉ phép, số giờ công cụ thể).
+                      Thống kê tổng hợp: Tổng ngày công thực tế, tổng phút đi trễ, tổng phút về sớm, tổng số giờ tăng ca (OT).
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-[11px] flex items-center justify-between">
-                  <span>
-                    📊 <strong>Xuất Excel 1-Click:</strong> Bấm <strong>"Xuất File Excel"</strong>. File tải về có định dạng chuẩn văn phòng, có sẵn màu sắc tiêu đề, công thức tính tổng rõ ràng, sẵn sàng in ấn hoặc lưu trữ.
-                  </span>
+                <div className="p-3 rounded-xl bg-teal-50 border border-teal-200 text-teal-900 text-[11px]">
+                  📊 <strong>Xuất Excel 1-Click:</strong> File tải về có định dạng chuẩn <code>.xlsx</code> văn phòng, có sẵn màu sắc tiêu đề, đường viền rõ ràng, công thức tính tổng tự động, không bị lỗi font Tiếng Việt.
                 </div>
               </div>
             </section>
 
-            {/* 8. LICENSE ACTIVATION */}
+            {/* 10. LICENSE ACTIVATION */}
             <section id="license-activation" className="scroll-mt-24 space-y-4">
               <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold">
                   <KeyRound className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900">8. Kích Hoạt Bản Quyền License</h2>
+                  <h2 className="text-xl font-bold text-slate-900">10. Kích Hoạt Bản Quyền License & Đổi Gói</h2>
                   <p className="text-xs text-slate-500">Các bước lấy Machine ID và kích hoạt bản quyền chính hãng</p>
                 </div>
               </div>
@@ -481,7 +639,7 @@ export default function UserGuide({ onBackToHome, onOpenOrder, onOpenLookup }) {
                     <div>
                       <h4 className="font-bold text-slate-900 text-xs">Lấy Mã Máy Tính (Machine ID) trên phần mềm:</h4>
                       <p className="text-slate-600 text-[11px] mt-0.5">
-                        Mở phần mềm KTS TimeAttendance trên máy bạn muốn cài đặt. Nhấp vào nút <strong>Bản quyền</strong> ở góc trái dưới cùng màn hình. Bấm biểu tượng <strong>Sao chép</strong> để lấy chuỗi mã máy tính (ví dụ dạng: <code>KTS-A1B2-C3D4-E5F6</code>).
+                        Mở phần mềm KTS TimeAttendance trên máy bạn muốn cài đặt. Nhấp vào nút <strong>Bản quyền</strong> ở góc trái dưới cùng màn hình. Bấm biểu tượng <strong>Sao chép</strong> để lấy chuỗi mã máy tính (ví dụ: <code>KTS-A1B2-C3D4-E5F6</code>).
                       </p>
                     </div>
                   </div>
@@ -489,9 +647,9 @@ export default function UserGuide({ onBackToHome, onOpenOrder, onOpenLookup }) {
                   <div className="flex items-start gap-3">
                     <span className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold shrink-0">2</span>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-xs">Đăng ký & Thanh toán VietQR trên Website:</h4>
+                      <h4 className="font-bold text-slate-900 text-xs">Đăng ký & Quét mã VietQR trên Website:</h4>
                       <p className="text-slate-600 text-[11px] mt-0.5">
-                        Nhấp nút <strong>Mua Bản Quyền</strong> trên trang web này, chọn gói (Tháng / 1 Năm / Vĩnh Viễn), dán <em>Machine ID</em> đã chép ở Bước 1 và quét mã VietQR để thanh toán.
+                        Nhấp nút <strong>Mua Bản Quyền</strong> trên trang web này, chọn gói (Tiêu Chuẩn hoặc Pro Đa Chi Nhánh), dán <em>Machine ID</em> đã chép ở Bước 1 và quét mã VietQR trên ứng dụng ngân hàng.
                       </p>
                     </div>
                   </div>
@@ -499,9 +657,9 @@ export default function UserGuide({ onBackToHome, onOpenOrder, onOpenLookup }) {
                   <div className="flex items-start gap-3">
                     <span className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold shrink-0">3</span>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-xs">Tra cứu & Lấy mã License Key:</h4>
+                      <h4 className="font-bold text-slate-900 text-xs">Tra cứu & Nhận mã License Key tức thì:</h4>
                       <p className="text-slate-600 text-[11px] mt-0.5">
-                        Sau khi hoàn tất chuyển khoản, bấm vào nút <strong>Tra Cứu Bản Quyền</strong> trên web, nhập số điện thoại hoặc Machine ID để nhận ngay chuỗi <strong>License Key</strong> đã được cấp.
+                        Sau khi hoàn tất thanh toán, hệ thống VietQR tự động duyệt đơn trong 1-5 phút. Bấm vào nút <strong>Tra Cứu Bản Quyền</strong> trên web, nhập số điện thoại hoặc Machine ID để nhận chuỗi <strong>License Key</strong>.
                       </p>
                     </div>
                   </div>
@@ -511,110 +669,135 @@ export default function UserGuide({ onBackToHome, onOpenOrder, onOpenLookup }) {
                     <div>
                       <h4 className="font-bold text-emerald-900 text-xs">Dán Key và kích hoạt thành công:</h4>
                       <p className="text-slate-600 text-[11px] mt-0.5">
-                        Quay lại phần mềm trên máy tính, dán chuỗi License Key vào ô và bấm <strong>Kích Hoạt Bản Quyền</strong>. Phần mềm sẽ mở khóa toàn bộ tính năng và không giới hạn số lượng nhân viên!
+                        Quay lại phần mềm trên máy tính, dán License Key vào ô và bấm <strong>Kích Hoạt Bản Quyền</strong>. Phần mềm mở khóa 100% tính năng vĩnh viễn hoặc theo hạn gói!
                       </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="p-3 rounded-xl bg-blue-50 border border-blue-200 text-blue-900 text-[11px]">
-                  💡 <strong>Kích hoạt Offline:</strong> Thuật toán mã hóa của KTS TimeAttendance cho phép kích hoạt hoàn toàn Offline. Ngay cả khi máy tính của bạn không có mạng Internet, bạn vẫn có thể dán mã License Key để kích hoạt bình thường!
+                  💡 <strong>Kích hoạt Offline 100%:</strong> Thuật toán mã hóa RSA của KTS cho phép kích hoạt hoàn toàn Offline. Ngay cả khi máy tính của bạn đặt trong phòng máy bảo mật không có mạng Internet, bạn vẫn có thể dán mã License Key để kích hoạt bình thường!
                 </div>
               </div>
             </section>
 
-            {/* 9. BACKUP & SETTINGS */}
-            <section id="backup-settings" className="scroll-mt-24 space-y-4">
+            {/* 11. IN-APP 1-CLICK UPDATES */}
+            <section id="inapp-updates" className="scroll-mt-24 space-y-4">
               <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-violet-100 text-violet-800 flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
+                  <RefreshCw className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-slate-900">11. Cập Nhật Phần Mềm Tự Động 1-Click Local</h2>
+                  <p className="text-xs text-slate-500">Quản trị viên nâng cấp phiên bản mới trực tiếp ngay trong app không cần cài lại</p>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4 text-xs leading-relaxed">
+                <p className="text-slate-700">
+                  KTS TimeAttendance trang bị hệ thống kiểm tra và nâng cấp thông minh:
+                </p>
+
+                <div className="space-y-3">
+                  <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5">
+                    <span className="font-bold text-slate-900 block text-xs">
+                      🔔 1. Tự Động Phát Hiện Phiên Bản Mới:
+                    </span>
+                    <p className="text-slate-600 text-[11px]">
+                      Mỗi khi KTS phát hành phiên bản cập nhật vá lỗi hoặc bổ sung tính năng mới (ví dụ từ v2.0.1 lên v2.0.2), trên đầu giao diện phần mềm của bạn sẽ tự động hiển thị <strong>Banner Thông Báo Cập Nhật Mới</strong> kèm danh sách các tính năng được cải tiến.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5">
+                    <span className="font-bold text-slate-900 block text-xs">
+                      ⚡ 2. Nâng Cấp 1-Click An Toàn:
+                    </span>
+                    <p className="text-slate-600 text-[11px]">
+                      Quản trị viên chỉ cần bấm vào nút <strong>"Cập Nhật Ngay"</strong>. Phần mềm sẽ tự động:<br />
+                      • Tự động sao lưu an toàn toàn bộ dữ liệu chấm công và danh sách nhân sự hiện có.<br />
+                      • Tải gói cập nhật nhị phân an toàn từ máy chủ chính thức của KTS.<br />
+                      • Khởi động lại với phiên bản mới mà người dùng không cần can thiệp bất kỳ thao tác kỹ thuật nào.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* 12. BACKUP & TROUBLESHOOTING */}
+            <section id="troubleshooting" className="scroll-mt-24 space-y-4">
+              <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
+                <div className="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center font-bold">
                   <Database className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900">9. Sao Lưu CSDL & Cài Đặt Hệ Thống</h2>
-                  <p className="text-xs text-slate-500">Bảo vệ an toàn dữ liệu doanh nghiệp và quản trị tài khoản</p>
+                  <h2 className="text-xl font-bold text-slate-900">12. Sao Lưu CSDL & Khắc Phục Sự Cố FAQs</h2>
+                  <p className="text-xs text-slate-500">Bảo vệ an toàn dữ liệu doanh nghiệp và xử lý nhanh các tình huống phát sinh</p>
                 </div>
               </div>
 
               <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4 text-xs leading-relaxed">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-                    <h4 className="font-bold text-slate-900 text-xs">Sao Lưu Cơ Sở Dữ Liệu (Backup):</h4>
+                    <h4 className="font-bold text-slate-900 text-xs">Sao Lưu Dữ Liệu (Backup):</h4>
                     <p className="text-slate-600 text-[11px]">
-                      Vào <strong>Cài Đặt Hệ Thống</strong> -&gt; Chọn <strong>Sao Lưu Dữ Liệu</strong>. Hệ thống sẽ kết xuất toàn bộ cơ sở dữ liệu SQLite thành 1 file <code>.db</code> an toàn. Bạn có thể copy file này cất vào Google Drive, USB hoặc ổ D: để lưu trữ dự phòng.
+                      Vào <strong>Cài Đặt Hệ Thống</strong> &gt; Chọn <strong>Sao Lưu Dữ Liệu</strong>. Hệ thống xuất toàn bộ CSDL SQLite thành 1 file <code>.db</code>. Bạn có thể copy file này cất vào Google Drive, USB hoặc ổ D: để dự phòng.
                     </p>
                   </div>
 
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
                     <h4 className="font-bold text-slate-900 text-xs">Phục Hồi Dữ Liệu (Restore):</h4>
                     <p className="text-slate-600 text-[11px]">
-                      Khi đổi máy tính mới hoặc cài lại Windows, bạn chỉ cần bấm nút <strong>Phục Hồi Dữ Liệu</strong> và chọn file backup đã lưu trước đó. Toàn bộ nhân sự, ca làm việc và lịch sử chấm công sẽ được tái hiện nguyên vẹn 100%.
+                      Khi đổi máy tính mới hoặc cài lại Windows, bạn chỉ cần bấm nút <strong>Phục Hồi Dữ Liệu</strong> và chọn file backup đã lưu trước đó. Toàn bộ dữ liệu nhân sự, ca làm việc và lịch sử chấm công sẽ được tái hiện nguyên vẹn 100%.
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-[11px]">
-                  🔒 <strong>Đổi Mật Khẩu Quản Trị:</strong> Bạn có thể đổi mật khẩu tài khoản Admin để ngăn chặn nhân viên tự ý đăng nhập thay đổi giờ công hoặc sửa ca làm việc.
-                </div>
-              </div>
-            </section>
+                <div className="space-y-3 pt-3">
+                  <h4 className="font-bold text-slate-900 text-xs">Các Câu Hỏi Thường Gặp (FAQs):</h4>
 
-            {/* 10. TROUBLESHOOTING & FAQS */}
-            <section id="troubleshooting" className="scroll-mt-24 space-y-4">
-              <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center font-bold">
-                  <HelpCircle className="w-5 h-5" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-slate-900">10. Khắc Phục Sự Cố & Câu Hỏi Thường Gặp</h2>
-                  <p className="text-xs text-slate-500">Cách xử lý nhanh các tình huống phát sinh thường gặp</p>
-                </div>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4 text-xs leading-relaxed">
-                <div className="space-y-3">
                   <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
                     <span className="font-bold text-slate-900 block">
-                      ❓ Lỗi 1: Phần mềm báo "Không thể kết nối đến máy chấm công" hoặc Ping thất bại?
+                      ❓ Câu 1: Phần mềm báo "Không thể kết nối đến máy chấm công" hoặc Ping thất bại?
                     </span>
                     <p className="text-slate-600 text-[11px]">
                       <strong>Cách xử lý:</strong><br />
-                      1. Kiểm tra dây mạng LAN cắm vào máy chấm công đèn xanh có nháy sáng không.<br />
-                      2. Mở cửa sổ CMD trên máy tính, gõ lệnh <code>ping 192.168.1.201</code> (thay bằng IP máy chấm công của bạn). Nếu báo <em>Request timed out</em> nghĩa là máy vi tính và máy chấm công đang khác dải mạng (ví dụ máy tính bắt wifi khác hoặc cắm modem phụ). Hãy đảm bảo cả hai cùng nối chung 1 modem.<br />
-                      3. Kiểm tra Port <code>4370</code> và ComKey có đúng là <code>0</code> không.
+                      1. Kiểm tra đèn mạng LAN cắm sau máy chấm công có sáng xanh không.<br />
+                      2. Đảm bảo máy tính và máy chấm công cắm chung 1 modem mạng nội bộ.<br />
+                      3. Kiểm tra Port <code>4370</code> và ComKey là <code>0</code>.
                     </p>
                   </div>
 
                   <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
                     <span className="font-bold text-slate-900 block">
-                      ❓ Lỗi 2: Nhân viên chấm vân tay thành công nhưng trên phần mềm không hiện giờ quẹt?
+                      ❓ Câu 2: Nhân viên chấm vân tay thành công nhưng trên app không hiện giờ quẹt?
                     </span>
                     <p className="text-slate-600 text-[11px]">
                       <strong>Cách xử lý:</strong><br />
-                      1. Bạn cần vào mục <strong>Dữ Liệu Chấm Công</strong> và bấm nút <strong>Tải Dữ Liệu Chấm Công</strong> để phần mềm kéo log mới nhất từ máy về.<br />
-                      2. Kiểm tra xem Mã Chấm Công (Enroll ID) của nhân viên đó trong danh mục Nhân sự đã khớp đúng với ID trên máy chấm công chưa.<br />
-                      3. Kiểm tra đồng hồ trên máy chấm công có bị chạy sai năm/tháng/ngày không.
+                      1. Vào mục <strong>Dữ Liệu Chấm Công</strong> và bấm <strong>Tải Dữ Liệu Chấm Công</strong> để kéo log từ máy về máy tính.<br />
+                      2. Kiểm tra Mã Chấm Công (Enroll ID) của nhân viên trong danh mục có khớp chính xác với ID trên máy chấm công không.<br />
+                      3. Kiểm tra đồng hồ hiển thị trên máy chấm công có bị chạy sai ngày giờ không.
                     </p>
                   </div>
 
                   <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
                     <span className="font-bold text-slate-900 block">
-                      ❓ Lỗi 3: Cài lại Win hoặc đổi máy tính có bị mất bản quyền không?
+                      ❓ Câu 3: Khi đổi máy vi tính mới có bị mất bản quyền không?
                     </span>
                     <p className="text-slate-600 text-[11px]">
-                      <strong>Trả lời:</strong> Nếu bạn cài lại Windows trên cùng một máy tính, Mã máy tính (Machine ID) không thay đổi nên License Key cũ vẫn kích hoạt thành công trọn đời. Nếu bạn mua máy vi tính mới hoàn toàn, vui lòng liên hệ Zalo kỹ thuật <strong>0776.980.269</strong> để được hỗ trợ chuyển đổi bản quyền sang máy mới nhanh chóng.
+                      <strong>Trả lời:</strong> Với khách hàng đăng ký Gói Vĩnh Viễn hoặc Pro, KTS hỗ trợ chuyển đổi bản quyền sang máy tính mới tối đa 3 lần hoàn toàn miễn phí. Vui lòng nhắn tin Zalo kỹ thuật <strong>0776.980.269</strong> để được kỹ sư kích hoạt lại ngay trong 5 phút.
                     </p>
                   </div>
                 </div>
 
                 <div className="pt-2 text-center">
-                  <p className="text-slate-500 text-[11px] mb-3">Bạn vẫn còn câu hỏi chưa được giải đáp?</p>
+                  <p className="text-slate-500 text-[11px] mb-3">Bạn vẫn cần chuyên viên kỹ thuật hỗ trợ trực tiếp?</p>
                   <a
                     href="https://zalo.me/0776980269"
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs shadow-md shadow-blue-500/20 hover:from-blue-700 hover:to-indigo-700 transition-all"
                   >
-                    <HelpCircle className="w-4 h-4" /> Nhắn Zalo Hỗ Trợ: 0776.980.269
+                    <HelpCircle className="w-4 h-4" /> Kỹ Sư KTS Hỗ Trợ Zalo: 0776.980.269
                   </a>
                 </div>
               </div>

@@ -126,20 +126,29 @@ function verifyLicenseKey(licenseKey, currentMachineId = null) {
 }
 
 /**
- * Tính ngày hết hạn dựa theo gói (Gói tháng, Gói năm, Gói vĩnh viễn)
+ * Tính ngày hết hạn dựa theo gói (Gói tháng, Gói năm, Gói vĩnh viễn, Gói Pro Đa Chi Nhánh)
  */
 function calculateExpireDate(packageType, months = 1) {
-  if (packageType === 'LIFETIME' || packageType === 'PERPETUAL') {
+  if (
+    packageType === 'LIFETIME' ||
+    packageType === 'PERPETUAL' ||
+    packageType === 'STANDARD_LIFETIME' ||
+    packageType === 'PRO_LIFETIME' ||
+    packageType === 'ENTERPRISE'
+  ) {
     return 'PERPETUAL';
   }
   const date = new Date();
-  if (packageType === 'YEARLY') {
+  if (
+    packageType === 'YEARLY' ||
+    packageType === 'STANDARD_YEARLY' ||
+    packageType === 'PRO_YEARLY'
+  ) {
     date.setFullYear(date.getFullYear() + 1);
   } else if (packageType === 'MONTHLY') {
     date.setMonth(date.getMonth() + (months || 1));
   } else {
-    // Mặc định 1 tháng
-    date.setMonth(date.getMonth() + 1);
+    date.setFullYear(date.getFullYear() + 1);
   }
   return date.toISOString().split('T')[0];
 }

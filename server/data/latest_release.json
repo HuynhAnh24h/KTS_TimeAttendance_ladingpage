@@ -1,18 +1,29 @@
 {
-  "latest_version": "2.0.1",
+  "latest_version": "2.0.2",
   "release_date": "2026-11-12",
-  "release_title": "KTS TimeAttendance v2.0.1 Commercial Release",
+  "release_title": "KTS TimeAttendance v2.0.2 Pro Multi-Branch & Payroll Edition",
   "release_notes": [
-    "Tự động quét và nhận diện máy chấm công qua mạng LAN trong 0.7 giây",
-    "Bảo mật mã nguồn tuyệt đối: Vô hiệu hóa DevTools F12 và đóng gói nhị phân an toàn",
-    "Hỗ trợ tính năng Cập nhật trực tiếp 1-Click phía local dành cho Quản trị viên",
-    "Khóa bản quyền phần cứng độc quyền và tự hủy dữ liệu sau 30 ngày bảo vệ doanh nghiệp",
-    "Xuất báo cáo bảng công ma trận 31 ngày chuẩn Luật Lao Động 2026"
+    "Mở khóa tính năng Chấm Công Đa Chi Nhánh & ZKTeco Cloud Push ADMS (Không cần IP tĩnh / Zero NAT)",
+    "Hỗ trợ KTS Edge Sync Agent cho máy chấm công đời cũ qua mạng Internet",
+    "Tích hợp hệ thống Tính Lương Tự Động (OT 1.5x, 2.0x, 3.0x, phụ cấp ca đêm 30%, trừ BHXH 10.5%)",
+    "Bảng công ma trận 31 ngày & Bảng thanh toán lương chuẩn phòng Kế toán",
+    "Cập nhật 1-Click trực tiếp Local dành cho Quản trị viên trong ứng dụng",
+    "Phân chia các gói bản quyền: Gói Tiêu Chuẩn (Standard), Gói Pro Đa Chi Nhánh và Gói Doanh Nghiệp (Enterprise)"
   ],
   "download_url_setup": "https://github.com/HuynhAnh24h/KTS_TimeAttendance_ladingpage/releases/download/v2.0/KTS_TimeAttendance_Commercial_Setup_v2.0.exe",
-  "download_url_portable": "https://github.com/HuynhAnh24h/KTS_TimeAttendance_ladingpage/releases/download/v2.0/KTS_TimeAttendance_Portable_v2.0.zip",
+  "download_url_portable": "/downloads/KTS_TimeAttendance_Portable_v2.0.zip",
   "is_critical": false,
   "history": [
+    {
+      "version": "2.0.2",
+      "release_date": "2026-11-12",
+      "title": "Bản phát hành v2.0.2 - Chấm Công Đa Chi Nhánh & Tính Lương Tự Động",
+      "notes": [
+        "Tính năng Chấm Công Đa Chi Nhánh Cloud ADMS xuyên tường lửa Zero-NAT",
+        "Bộ máy tính lương tự động chuẩn Luật Lao Động 2026",
+        "Phân bổ bản quyền theo gói Standard, Pro Multi-Branch và Enterprise"
+      ]
+    },
     {
       "version": "2.0.1",
       "release_date": "2026-11-12",

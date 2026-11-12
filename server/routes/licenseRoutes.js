@@ -4,55 +4,146 @@ const License = require('../models/License');
 const { generateLicenseKey, calculateExpireDate } = require('../services/licenseGenerator');
 const { generateVietQrUrl, DEFAULT_BANK } = require('../services/vietqrService');
 
-// Bảng giá niêm yết các gói bản quyền
+// Bảng giá niêm yết các gói bản quyền phân chia rõ ràng theo nhu cầu doanh nghiệp
 const PRICING_PLANS = {
+  STANDARD_YEARLY: {
+    id: 'STANDARD_YEARLY',
+    name: 'Gói Tiêu Chuẩn (1 Năm)',
+    tier: 'standard',
+    edition: 'Standard Edition',
+    price: 890000,
+    formattedPrice: '890.000đ',
+    period: '/năm',
+    description: 'Dành cho văn phòng hoặc nhà máy 1 địa điểm trong cùng mạng LAN',
+    features: [
+      'Đầy đủ tính năng chấm công & tính lương',
+      'Quét Radar LAN tự động trong 0.7 giây',
+      'Hỗ trợ mọi máy Ronald Jack, Gigata, ZKTeco (UDP 4370)',
+      'Không giới hạn nhân viên & máy chấm công nội bộ',
+      'Bảng công ma trận 31 ngày & Bảng lương tự động',
+      'Hỗ trợ kỹ thuật qua Zalo / UltraView 24/7'
+    ]
+  },
+  STANDARD_LIFETIME: {
+    id: 'STANDARD_LIFETIME',
+    name: 'Gói Tiêu Chuẩn (Vĩnh Viễn)',
+    tier: 'standard',
+    edition: 'Standard Edition',
+    price: 1890000,
+    formattedPrice: '1.890.000đ',
+    period: '/trọn đời',
+    description: 'Bản quyền vĩnh viễn 1 địa điểm, thanh toán 1 lần dùng mãi mãi',
+    features: [
+      'Toàn bộ tính năng của Gói Tiêu Chuẩn 1 Năm',
+      'Sở hữu vĩnh viễn, không phí duy trì hàng năm',
+      'Miễn phí cập nhật phiên bản mới trọn đời',
+      'Hỗ trợ cấp lại mã khi đổi máy tính (tối đa 3 lần)',
+      'Ưu tiên hỗ trợ kỹ thuật trực tiếp từ đội ngũ KTS'
+    ]
+  },
+  PRO_YEARLY: {
+    id: 'PRO_YEARLY',
+    name: 'Gói Pro Đa Chi Nhánh (1 Năm)',
+    tier: 'pro',
+    edition: 'Pro Multi-Branch Edition',
+    price: 2490000,
+    formattedPrice: '2.490.000đ',
+    period: '/năm',
+    isPopular: true,
+    discountBadge: 'Bán Chạy Nhất',
+    description: 'Chấm công chuỗi chi nhánh toàn quốc, tự động đẩy dữ liệu qua Internet (ZKTeco ADMS)',
+    features: [
+      'Mở khóa toàn bộ tính năng Đa Chi Nhánh',
+      'ZKTeco Native ADMS Cloud Push: Xuyên tường lửa / NAT không cần IP tĩnh',
+      'KTS Edge Sync Agent cho các máy đời cũ',
+      'Quản lý không giới hạn chi nhánh (HN, HCM, Bình Dương...)',
+      'Lọc bảng công & tính lương riêng từng chi nhánh',
+      'Hỗ trợ kỹ sư KTS cấu hình từ xa tận nơi'
+    ]
+  },
+  PRO_LIFETIME: {
+    id: 'PRO_LIFETIME',
+    name: 'Gói Pro Đa Chi Nhánh (Vĩnh Viễn)',
+    tier: 'pro',
+    edition: 'Pro Multi-Branch Edition',
+    price: 4890000,
+    formattedPrice: '4.890.000đ',
+    period: '/trọn đời',
+    isBestValue: true,
+    discountBadge: 'Khuyên Dùng Cho Chuỗi',
+    description: 'Giải pháp Đa Chi Nhánh trọn đời, tối ưu chi phí vận hành cho doanh nghiệp chuỗi',
+    features: [
+      'Bản quyền Đa Chi Nhánh vĩnh viễn theo máy chủ',
+      'ZKTeco ADMS Cloud Push & Edge Sync không giới hạn',
+      'Không bao giờ phát sinh phí duy trì máy chủ hay hàng năm',
+      'Miễn phí nâng cấp tất cả tính năng tương lai',
+      'Hỗ trợ chuyển đổi máy chủ server linh hoạt',
+      'Đội ngũ kỹ sư hỗ trợ riêng VIP 24/7'
+    ]
+  },
+  ENTERPRISE: {
+    id: 'ENTERPRISE',
+    name: 'Gói Doanh Nghiệp (Enterprise)',
+    tier: 'enterprise',
+    edition: 'Enterprise Edition',
+    price: 8900000,
+    formattedPrice: '8.900.000đ',
+    period: '/trọn gói',
+    discountBadge: 'Tập Đoàn / Nhà Máy',
+    description: 'Tùy biến sâu theo yêu cầu, tích hợp ERP / Phần mềm kế toán MISA, Bravo, SAP',
+    features: [
+      'Toàn bộ tính năng cao cấp nhất của Gói Pro',
+      'Triển khai Cloud Server hoặc On-Premise riêng biệt',
+      'Kết nối API hai chiều với hệ thống ERP / HRM / CRM',
+      'Tùy chỉnh công thức lương, phụ cấp theo quy chế công ty',
+      'Kỹ sư KTS đến trực tiếp nhà máy khảo sát & đào tạo',
+      'Cam kết SLA 99.9% và bảo hành hệ thống trọn đời'
+    ]
+  },
+  // Tương thích ngược với các đơn hàng cũ
   MONTHLY: {
     id: 'MONTHLY',
-    name: 'Gói 1 Tháng',
+    name: 'Gói Trải Nghiệm (1 Tháng)',
+    tier: 'standard',
+    edition: 'Standard Edition',
     price: 99000,
     formattedPrice: '99.000đ',
     period: '/tháng',
     description: 'Thích hợp dùng thử, trải nghiệm dự án ngắn hạn hoặc theo mùa vụ',
     features: [
-      'Đầy đủ mọi tính năng chấm công',
-      'Hỗ trợ tất cả máy chấm công IP (Ronald Jack, Gigata, ZK, Hikvision)',
-      'Không giới hạn số lượng nhân sự & máy',
-      'Xuất file Excel bảng công ma trận chuẩn 31 ngày',
-      'Hỗ trợ kỹ thuật qua Zalo/UltraView'
+      'Đầy đủ mọi tính năng chấm công cơ bản',
+      'Hỗ trợ tất cả máy chấm công IP LAN',
+      'Không giới hạn số lượng nhân sự',
+      'Xuất file Excel bảng công ma trận 31 ngày'
     ]
   },
   YEARLY: {
     id: 'YEARLY',
-    name: 'Gói 1 Năm',
-    price: 899000,
-    formattedPrice: '899.000đ',
+    name: 'Gói 1 Năm (Tiêu Chuẩn)',
+    tier: 'standard',
+    edition: 'Standard Edition',
+    price: 890000,
+    formattedPrice: '890.000đ',
     period: '/năm',
-    isPopular: true,
-    discountBadge: 'Tiết kiệm 25%',
-    description: 'Lựa chọn phổ biến nhất cho doanh nghiệp & nhà máy vừa và nhỏ',
+    description: 'Dành cho văn phòng hoặc nhà máy 1 địa điểm trong cùng mạng LAN',
     features: [
-      'Toàn bộ quyền lợi gói tháng',
-      'Tiết kiệm hơn 25% chi phí so với theo tháng',
-      'Cập nhật phiên bản phần mềm miễn phí 1 năm',
-      'Hỗ trợ cấu hình ca kíp & kết nối máy tận nơi online',
-      'Ưu tiên hỗ trợ kỹ thuật 24/7'
+      'Đầy đủ tính năng chấm công & tính lương',
+      'Quét Radar LAN tự động trong 0.7 giây',
+      'Hỗ trợ mọi máy Ronald Jack, Gigata, ZKTeco'
     ]
   },
   LIFETIME: {
     id: 'LIFETIME',
-    name: 'Gói Vĩnh Viễn (Trọn Đời)',
-    price: 2490000,
-    formattedPrice: '2.490.000đ',
+    name: 'Gói Vĩnh Viễn (Tiêu Chuẩn)',
+    tier: 'standard',
+    edition: 'Standard Edition',
+    price: 1890000,
+    formattedPrice: '1.890.000đ',
     period: '/vĩnh viễn',
-    isBestValue: true,
-    discountBadge: 'Dùng Mãi Mãi',
-    description: 'Mua một lần duy nhất, sở hữu phần mềm trọn đời, không phát sinh chi phí',
+    description: 'Bản quyền vĩnh viễn 1 địa điểm',
     features: [
       'Bản quyền vĩnh viễn theo máy tính',
-      'Không bao giờ hết hạn',
-      'Miễn phí nâng cấp tất cả các bản cập nhật tương lai',
-      'Hỗ trợ chuyển đổi máy khi đổi máy tính (tối đa 3 lần)',
-      'Hỗ trợ trực tiếp từ đội ngũ kỹ sư phần mềm KTS'
+      'Không bao giờ hết hạn'
     ]
   }
 };
