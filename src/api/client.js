@@ -31,4 +31,10 @@ export const adminApi = {
   deleteLicense: (id) => api.delete(`/admin/licenses/${id}`).then(r => r.data)
 };
 
+export const updatesApi = {
+  check: (version) => api.get('/updates/check', { params: { version } }).then(r => r.data),
+  getHistory: () => api.get('/updates/history').then(r => r.data),
+  publishRelease: (data) => api.post('/updates/publish', data).then(r => r.data),
+};
+
 export default api;

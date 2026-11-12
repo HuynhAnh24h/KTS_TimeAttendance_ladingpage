@@ -1,0 +1,37 @@
+{
+  "latest_version": "2.0.1",
+  "release_date": "2026-11-12",
+  "release_title": "KTS TimeAttendance v2.0.1 Commercial Release",
+  "release_notes": [
+    "Tự động quét và nhận diện máy chấm công qua mạng LAN trong 0.7 giây",
+    "Bảo mật mã nguồn tuyệt đối: Vô hiệu hóa DevTools F12 và đóng gói nhị phân an toàn",
+    "Hỗ trợ tính năng Cập nhật trực tiếp 1-Click phía local dành cho Quản trị viên",
+    "Khóa bản quyền phần cứng độc quyền và tự hủy dữ liệu sau 30 ngày bảo vệ doanh nghiệp",
+    "Xuất báo cáo bảng công ma trận 31 ngày chuẩn Luật Lao Động 2026"
+  ],
+  "download_url_setup": "https://github.com/HuynhAnh24h/KTS_TimeAttendance_ladingpage/releases/download/v2.0/KTS_TimeAttendance_Commercial_Setup_v2.0.exe",
+  "download_url_portable": "https://github.com/HuynhAnh24h/KTS_TimeAttendance_ladingpage/releases/download/v2.0/KTS_TimeAttendance_Portable_v2.0.zip",
+  "is_critical": false,
+  "history": [
+    {
+      "version": "2.0.1",
+      "release_date": "2026-11-12",
+      "title": "Bản phát hành v2.0.1 - Bảo Mật & Cập Nhật Trực Tiếp Local",
+      "notes": [
+        "Tính năng 1-Click Local Update trực tiếp trong ứng dụng Desktop",
+        "Khóa hoàn toàn F12 DevTools và menu chuột phải chống can thiệp mã nguồn",
+        "Giấy phép bản quyền chuyên nghiệp cá nhân & doanh nghiệp"
+      ]
+    },
+    {
+      "version": "2.0.0",
+      "release_date": "2026-11-11",
+      "title": "Bản phát hành chính thức v2.0.0 Commercial Edition",
+      "notes": [
+        "Radar quét mạng LAN siêu tốc 0.7s với 64 workers",
+        "Thuật toán Auto-Shift đối soát ca kíp 24/7 và chống quẹt thẻ trùng",
+        "Tích hợp xuất bảng công Excel ma trận 31 ngày và thanh toán tự động VietQR"
+      ]
+    }
+  ]
+}

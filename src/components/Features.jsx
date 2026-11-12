@@ -26,13 +26,13 @@ export default function Features() {
     },
     {
       num: '05',
-      title: 'Đóng gói chuẩn Native App - Không bật terminal',
-      desc: 'Chạy độc lập mượt mà trên Windows 10/11, không hiện cửa sổ CMD đen phiền toái, mở phần mềm ngay trong 0.5 giây và chiếm cực ít RAM.'
+      title: 'Tự động báo cáo & Cập nhật 1-Click trực tiếp Local',
+      desc: 'Khi có bản phát hành mới, hệ thống tự động thông báo và quản trị viên có thể bấm nâng cấp trực tiếp ngay trên máy trạm mà không cần cài đặt lại.'
     },
     {
       num: '06',
-      title: 'Dữ liệu cục bộ an toàn & Sao lưu dự phòng 1-Click',
-      desc: 'Cơ sở dữ liệu SQLite/SQL lưu trực tiếp trên máy chủ của bạn, không gửi dữ liệu ra ngoài internet, đảm bảo bảo mật nội bộ tuyệt đối 100%.'
+      title: 'Khóa bản quyền Machine ID & Tự xóa sau 30 ngày',
+      desc: 'Mã hóa chữ ký HMAC ràng buộc chặt chẽ với từng công ty và máy tính. Hết hạn khóa tính năng và đếm ngược 30 ngày xóa CSDL để bảo vệ tuyệt đối.'
     }
   ];
 

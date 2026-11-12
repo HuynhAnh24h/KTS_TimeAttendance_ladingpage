@@ -99,7 +99,7 @@ export default function DownloadSection() {
         </div>
 
         {/* 3 Steps Guide - Minimalist & Sleek */}
-        <div className="p-8 rounded-2xl bg-slate-50/70 border border-slate-200/70 max-w-4xl mx-auto">
+        <div className="p-8 rounded-2xl bg-slate-50/70 border border-slate-200/70 max-w-4xl mx-auto mb-8">
           <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider text-center mb-8">
             3 Bước Bắt Đầu Nhanh
           </h4>
@@ -116,14 +116,48 @@ export default function DownloadSection() {
                 2
               </span>
               <h5 className="text-sm font-semibold text-slate-900 mb-1">Cài đặt 1-Click</h5>
-              <p className="text-xs text-slate-500">Nhấp đúp chuột để trình cài đặt tự động hoàn tất.</p>
+              <p className="text-xs text-slate-500">Nhấp đúp chuột để trình cài đặt tự động hoàn tất trong vài giây.</p>
             </div>
             <div className="p-3">
               <span className="inline-flex w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold items-center justify-center mb-3">
                 3
               </span>
               <h5 className="text-sm font-semibold text-slate-900 mb-1">Dò tìm máy & Chấm công</h5>
-              <p className="text-xs text-slate-500">Bấm nút "Tự Động Nhận Diện Máy (LAN)" là xong.</p>
+              <p className="text-xs text-slate-500">Bấm nút "Tự Động Nhận Diện Máy (LAN)" và bắt đầu sử dụng ngay.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* What's New / Changelog Card */}
+        <div className="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-blue-50/60 to-indigo-50/40 border border-blue-100 max-w-4xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-blue-200/50">
+            <div className="flex items-center gap-2">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-blue-600 text-white">
+                v2.0.1 OFFICIAL
+              </span>
+              <h4 className="text-sm font-bold text-slate-900">
+                Nhật Ký Bản Phát Hành Mới (Release Notes)
+              </h4>
+            </div>
+            <span className="text-xs text-slate-500">Cập nhật ngày: 12/11/2026</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700">
+            <div className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
+              <span><strong>Cập nhật 1-Click phía local:</strong> Quản trị viên nâng cấp trực tiếp ngay trong app không cần cài lại.</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
+              <span><strong>Bảo mật mã nguồn tuyệt đối:</strong> Vô hiệu hóa DevTools F12 và đóng gói nhị phân chống can thiệp.</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
+              <span><strong>Radar quét LAN 0.7s:</strong> Tự động nhận diện thiết bị ZKTeco, Ronald Jack, Gigata T9 qua cổng 4370.</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
+              <span><strong>Khóa bản quyền Machine ID:</strong> Bảo mật theo công ty và tự động xóa sạch dữ liệu sau 30 ngày quá hạn.</span>
             </div>
           </div>
         </div>
