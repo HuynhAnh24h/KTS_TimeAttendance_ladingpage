@@ -5,6 +5,8 @@ import Features from '../components/Features';
 import ComparisonSection from '../components/ComparisonSection';
 import RoiCalculator from '../components/RoiCalculator';
 import Pricing from '../components/Pricing';
+import Testimonials from '../components/Testimonials';
+import FaqSection from '../components/FaqSection';
 import DownloadSection from '../components/DownloadSection';
 
 export default function HomePage({ plans, onSelectPlan, onOpenLookup }) {
@@ -22,7 +24,9 @@ export default function HomePage({ plans, onSelectPlan, onOpenLookup }) {
       <div id="workflow">
         <WorkflowVisual />
       </div>
-      <Features />
+      <div id="features">
+        <Features />
+      </div>
       <div id="comparison">
         <ComparisonSection />
       </div>
@@ -35,6 +39,8 @@ export default function HomePage({ plans, onSelectPlan, onOpenLookup }) {
         plans={plans}
         onSelectPlan={onSelectPlan}
       />
+      <Testimonials />
+      <FaqSection />
       <DownloadSection />
     </>
   );

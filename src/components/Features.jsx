@@ -9,151 +9,173 @@ import {
   Calculator,
   RefreshCw,
   ShieldCheck,
-  CheckCircle2
+  CheckCircle2,
+  Zap,
+  Server,
+  FileSpreadsheet
 } from 'lucide-react';
 
 export default function Features() {
-  const features = [
-    {
-      num: '01',
-      title: 'Chấm Công Đa Chi Nhánh Cloud ADMS',
-      badge: 'Gói Pro Độc Quyền',
-      icon: Globe,
-      desc: 'Quản lý chuỗi chi nhánh toàn quốc tập trung thời gian thực. Máy ZKTeco tự động đẩy dữ liệu (Cloud Push) xuyên tường lửa, không cần mở port modem và không cần thuê IP tĩnh đắt đỏ.',
-      previewWidget: (
-        <div className="p-2.5 rounded-xl bg-indigo-50/70 border border-indigo-200/80 text-[11px] font-mono text-indigo-900 flex items-center justify-between">
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>ADMS Push: Real-time</span>
-          </span>
-          <span className="text-[10px] font-bold bg-indigo-200/80 px-2 py-0.5 rounded text-indigo-900">Zero NAT</span>
-        </div>
-      )
-    },
-    {
-      num: '02',
-      title: 'Radar Quét & Nhận Diện Máy LAN 0.7s',
-      badge: 'Siêu Tốc 64 Luồng',
-      icon: Wifi,
-      desc: 'Dò tìm máy Ronald Jack, Gigata T9, ZKTeco trên cổng tiêu chuẩn 4370 trong mạng nội bộ chỉ mất 0.7 giây với 64 workers, không cần khai báo hay cấu hình IP thủ công.',
-      previewWidget: (
-        <div className="p-2.5 rounded-xl bg-blue-50/70 border border-blue-200/80 text-[11px] font-mono text-blue-900 flex items-center justify-between">
-          <span>Dải 192.168.1.1/24</span>
-          <span className="text-[10px] font-bold bg-blue-200/80 px-2 py-0.5 rounded text-blue-900">0.7 Giây</span>
-        </div>
-      )
-    },
-    {
-      num: '03',
-      title: 'Thuật Toán Auto-Shift & Ca Đêm Qua Ngày',
-      badge: 'Thông Minh 24/7',
-      icon: Clock,
-      desc: 'Tự động phân tích giờ quẹt thẻ để xếp đúng ca hành chính, ca kíp xoay vòng 24/7. Hỗ trợ ca làm đêm qua ngày xuyên đêm với chế độ cộng 30% phụ cấp ca đêm theo Luật Lao Động.',
-      previewWidget: (
-        <div className="p-2.5 rounded-xl bg-purple-50/70 border border-purple-200/80 text-[11px] text-purple-900 flex items-center justify-between">
-          <span>Ca Đêm 22:00 - 06:00</span>
-          <span className="text-[10px] font-bold bg-purple-200/80 px-2 py-0.5 rounded text-purple-900">+30% Phụ Cấp</span>
-        </div>
-      )
-    },
-    {
-      num: '04',
-      title: 'Tính Lương Tự Động & Xuất Excel Chuẩn',
-      badge: 'Chuẩn Kế Toán 2026',
-      icon: Calculator,
-      desc: 'Tự động tính ngày công thực tế, tăng ca ngày thường (1.5x), chủ nhật (2.0x), lễ tết (3.0x), khấu trừ bảo hiểm 10.5% và tạm ứng. Xuất bảng lương & bảng công ma trận 31 ngày chuẩn Excel.',
-      previewWidget: (
-        <div className="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80 text-[11px] text-emerald-900 flex items-center justify-between">
-          <span>Hệ số OT: 1.5x • 2.0x • 3.0x</span>
-          <span className="text-[10px] font-bold bg-emerald-200/80 px-2 py-0.5 rounded text-emerald-900">Trừ BHXH 10.5%</span>
-        </div>
-      )
-    },
-    {
-      num: '05',
-      title: 'Tự Động Báo Cáo & Cập Nhật 1-Click Local',
-      badge: 'Tiện Lợi',
-      icon: RefreshCw,
-      desc: 'Khi có bản phát hành mới, hệ thống tự động thông báo và quản trị viên có thể bấm nâng cấp trực tiếp ngay trên máy trạm (1-Click Local Update) mà không cần cài đặt lại hay mất dữ liệu.',
-      previewWidget: (
-        <div className="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200/80 text-[11px] text-amber-900 flex items-center justify-between">
-          <span>Bản v2.0.2 Đã Sẵn Sàng</span>
-          <span className="text-[10px] font-bold bg-amber-200/80 px-2 py-0.5 rounded text-amber-900">1-Click Upgrade</span>
-        </div>
-      )
-    },
-    {
-      num: '06',
-      title: 'Khóa Bản Quyền RSA & Tự Xóa Sau 30 Ngày',
-      badge: 'Bảo Mật Cấp Cao',
-      icon: ShieldCheck,
-      desc: 'Mã hóa chữ ký số RSA ràng buộc chặt chẽ với từng công ty và phần cứng máy tính. Hoạt động offline 100%. Hết hạn tự động khóa tính năng và đếm ngược 30 ngày xóa CSDL bảo vệ tuyệt đối.',
-      previewWidget: (
-        <div className="p-2.5 rounded-xl bg-slate-100 border border-slate-200 text-[11px] font-mono text-slate-700 flex items-center justify-between">
-          <span>Khóa Machine ID RSA</span>
-          <span className="text-[10px] font-bold bg-slate-200 px-2 py-0.5 rounded text-slate-800">Offline 100%</span>
-        </div>
-      )
-    }
-  ];
-
   return (
-    <section id="features" className="py-24 bg-white border-y border-slate-200/60">
+    <section id="features" className="py-24 bg-white border-y border-slate-200/60 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">Tính Năng Đột Phá</span>
+          <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">Kiến Trúc Đột Phá 2026</span>
           <h2 className="mt-2.5 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Thiết Kế Tối Ưu Cho Mọi Quy Trình Chấm Công & Tiền Lương
+            Tính Năng Toàn Diện Trong Thiết Kế Tinh Gọn
           </h2>
           <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-            Từ văn phòng 1 địa điểm đến chuỗi hàng chục chi nhánh. Tự động hóa hoàn toàn từ lượt quẹt thẻ đến bảng thanh toán tiền lương.
+            Giải phóng hoàn toàn thời gian của bộ phận nhân sự và kế toán tiền lương bằng hệ thống thông minh, tin cậy và chuẩn xác tuyệt đối.
           </p>
         </div>
 
-        {/* Clean, Elegant Grid with Numbers & Visual Preview Widgets */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((f, i) => {
-            const Icon = f.icon;
-            return (
-              <div
-                key={i}
-                className="p-7 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="text-xs font-mono font-bold text-blue-600 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                      {f.num}
-                    </span>
-                    {f.badge && (
-                      <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-slate-200/70 text-slate-700 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                        {f.badge}
-                      </span>
-                    )}
-                  </div>
+        {/* Modern SaaS Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* BENTO CARD 1 (Span 2 cols): ZKTeco Cloud Push ADMS */}
+          <div className="md:col-span-2 rounded-3xl p-7 sm:p-8 bg-gradient-to-br from-slate-900 to-indigo-950 text-white shadow-xl shadow-slate-900/10 flex flex-col justify-between relative overflow-hidden group">
+            {/* Ambient background glow */}
+            <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
 
-                  <div className="flex items-center gap-2 mb-2">
-                    <Icon className="w-5 h-5 text-blue-600 shrink-0" />
-                    <h3 className="text-base font-bold text-slate-900 leading-snug group-hover:text-blue-600 transition-colors">
-                      {f.title}
-                    </h3>
-                  </div>
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-6">
+                <span className="text-[11px] font-extrabold px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30 uppercase tracking-wider">
+                  Độc Quyền Gói Pro Multi-Branch
+                </span>
+                <Globe className="w-5 h-5 text-blue-400" />
+              </div>
 
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
-                    {f.desc}
-                  </p>
-                </div>
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 tracking-tight">
+                Chấm Công Đa Chi Nhánh Cloud ADMS (Zero-NAT)
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl mb-6">
+                Quản lý tập trung hàng chục chi nhánh toàn quốc (Hà Nội, TP.HCM, Đà Nẵng, Bình Dương...). Máy chấm công tự động đẩy dữ liệu thời gian thực (Push Stream) xuyên qua mọi modem/tường lửa mà không cần mở port modem và không cần thuê IP tĩnh tốn kém.
+              </p>
+            </div>
 
-                {/* Embedded Visual Preview Mini-Widget */}
-                <div className="pt-2 border-t border-slate-200/60">
-                  {f.previewWidget}
+            {/* Visual Micro Telemetry Widget */}
+            <div className="relative z-10 pt-4 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
+              <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                <div className="text-[10px] text-slate-400 uppercase">Hà Nội</div>
+                <div className="font-bold text-emerald-400 flex items-center gap-1.5 mt-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                  180 NV
                 </div>
               </div>
-            );
-          })}
+              <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                <div className="text-[10px] text-slate-400 uppercase">TP. Hồ Chí Minh</div>
+                <div className="font-bold text-emerald-400 flex items-center gap-1.5 mt-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                  350 NV
+                </div>
+              </div>
+              <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                <div className="text-[10px] text-slate-400 uppercase">Đà Nẵng</div>
+                <div className="font-bold text-emerald-400 flex items-center gap-1.5 mt-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  95 NV
+                </div>
+              </div>
+              <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                <div className="text-[10px] text-slate-400 uppercase">Bình Dương</div>
+                <div className="font-bold text-emerald-400 flex items-center gap-1.5 mt-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                  620 NV
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* BENTO CARD 2: Radar LAN 0.7s */}
+          <div className="rounded-3xl p-7 bg-slate-50/80 border border-slate-200/90 shadow-sm hover:border-blue-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-5">
+                <span className="text-[10px] font-bold px-2.5 py-1 rounded-md bg-blue-100 text-blue-800 font-mono">
+                  64 WORKERS
+                </span>
+                <Wifi className="w-5 h-5 text-blue-600" />
+              </div>
+
+              <h3 className="text-lg font-bold text-slate-900 mb-2 leading-snug">
+                Radar Quét LAN 0.7s
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed mb-6">
+                Tự động nhận diện thiết bị Ronald Jack, Gigata T9, ZKTeco trên cổng UDP 4370 trong toàn bộ dải mạng mà không cần gõ IP thủ công.
+              </p>
+            </div>
+
+            <div className="p-3 rounded-2xl bg-white border border-slate-200 text-[11px] font-mono flex items-center justify-between">
+              <span className="text-slate-600">Dải: 192.168.1.1/24</span>
+              <span className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 font-bold text-[10px]">
+                0.7s Tự Động
+              </span>
+            </div>
+          </div>
+
+          {/* BENTO CARD 3: Auto-Shift & Ca Đêm */}
+          <div className="rounded-3xl p-7 bg-slate-50/80 border border-slate-200/90 shadow-sm hover:border-purple-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-5">
+                <span className="text-[10px] font-bold px-2.5 py-1 rounded-md bg-purple-100 text-purple-800">
+                  AUTO-SHIFT 24/7
+                </span>
+                <Clock className="w-5 h-5 text-purple-600" />
+              </div>
+
+              <h3 className="text-lg font-bold text-slate-900 mb-2 leading-snug">
+                Thuật Toán Auto-Shift & Ca Đêm Qua Ngày
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed mb-6">
+                Tự động bắt ca hành chính, ca kíp xoay vòng 24/7. Hỗ trợ ca làm đêm từ 22:00 đến 06:00 sáng hôm sau với chế độ cộng 30% phụ cấp ca đêm.
+              </p>
+            </div>
+
+            <div className="p-3 rounded-2xl bg-white border border-slate-200 text-[11px] flex items-center justify-between">
+              <span className="font-semibold text-slate-800">Ca Đêm (22h - 06h)</span>
+              <span className="px-2 py-0.5 rounded-md bg-purple-50 text-purple-700 font-bold text-[10px]">
+                +30% Phụ Cấp
+              </span>
+            </div>
+          </div>
+
+          {/* BENTO CARD 4 (Span 2 cols): Tự Động Tính Lương Kế Toán */}
+          <div className="md:col-span-2 rounded-3xl p-7 sm:p-8 bg-slate-50/80 border border-slate-200/90 shadow-sm hover:border-emerald-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-5">
+                <span className="text-[10px] font-bold px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800">
+                  PAYROLL ENGINE 2026
+                </span>
+                <Calculator className="w-5 h-5 text-emerald-600" />
+              </div>
+
+              <h3 className="text-xl font-bold text-slate-900 mb-2 leading-snug">
+                Bộ Máy Tính Lương Tự Động Chuẩn Kế Toán
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl mb-6">
+                Tự động tổng hợp ngày công, tăng ca ngày thường (1.5x), chủ nhật (2.0x), lễ tết (3.0x), trích trừ bảo hiểm 10.5% (BHXH 8%, BHYT 1.5%, BHTN 1%) và tạm ứng. Kết xuất phiếu lương và bảng thanh toán tiền lương chuẩn phòng Kế toán.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-3 border-t border-slate-200">
+              <div className="p-3 rounded-xl bg-white border border-slate-200">
+                <span className="text-slate-500 text-[11px] block">Tăng Ca (OT)</span>
+                <span className="font-bold text-slate-900 text-xs">1.5x • 2.0x • 3.0x</span>
+              </div>
+              <div className="p-3 rounded-xl bg-white border border-slate-200">
+                <span className="text-slate-500 text-[11px] block">Khấu Trừ BHXH</span>
+                <span className="font-bold text-slate-900 text-xs">10.5% Tự Động</span>
+              </div>
+              <div className="p-3 rounded-xl bg-white border border-slate-200">
+                <span className="text-slate-500 text-[11px] block">Xuất Báo Cáo</span>
+                <span className="font-bold text-emerald-600 text-xs flex items-center gap-1">
+                  <FileSpreadsheet className="w-3.5 h-3.5" /> 1-Click Excel .xlsx
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Guide Banner */}
-        <div className="mt-14 p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left transition-all hover:border-slate-300">
+        {/* Minimalist Guide Banner */}
+        <div className="mt-14 p-6 sm:p-7 rounded-3xl bg-slate-50 border border-slate-200/90 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left transition-all hover:border-slate-300">
           <div>
             <h4 className="font-bold text-slate-900 text-sm">Cần cẩm nang hướng dẫn cài đặt Đa Chi Nhánh ADMS & Tính Lương?</h4>
             <p className="text-xs text-slate-500 mt-1">Xem tài liệu hướng dẫn kết nối máy, cấu hình ca kíp, bảng lương và xuất Excel chi tiết 12 chuyên đề.</p>
