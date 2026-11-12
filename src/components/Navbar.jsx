@@ -23,9 +23,10 @@ export default function Navbar({ onOpenOrder }) {
         </Link>
 
         {/* Links */}
-        <nav className="hidden lg:flex items-center gap-7 text-xs font-semibold text-slate-600">
+        <nav className="hidden lg:flex items-center gap-6 text-xs font-semibold text-slate-600">
           <a href="/#features" className="hover:text-blue-600 transition-colors">Tính Năng</a>
           <a href="/#workflow" className="hover:text-blue-600 transition-colors">Quy Trình</a>
+          <a href="/#products" className="hover:text-blue-600 transition-colors text-blue-700 font-bold">Máy & Thi Công</a>
           <a href="/#comparison" className="hover:text-blue-600 transition-colors">So Sánh</a>
           <a href="/#roi" className="hover:text-blue-600 transition-colors">Ước Tính Tiết Kiệm</a>
           <a href="/#pricing" className="hover:text-blue-600 transition-colors">Bảng Giá</a>

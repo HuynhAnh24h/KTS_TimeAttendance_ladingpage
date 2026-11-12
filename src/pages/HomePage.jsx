@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Hero from '../components/Hero';
 import WorkflowVisual from '../components/WorkflowVisual';
 import Features from '../components/Features';
+import HardwareProducts from '../components/HardwareProducts';
 import ComparisonSection from '../components/ComparisonSection';
 import RoiCalculator from '../components/RoiCalculator';
 import Pricing from '../components/Pricing';
@@ -11,7 +12,7 @@ import DownloadSection from '../components/DownloadSection';
 
 export default function HomePage({ plans, onSelectPlan, onOpenLookup }) {
   useEffect(() => {
-    document.title = 'KTS TimeAttendance v2.0.2 - Chấm Công Đa Chi Nhánh & Tính Lương';
+    document.title = 'KTS TimeAttendance v2.0.2 - Chấm Công Đa Chi Nhánh, Máy Chấm Công & Thi Công';
     window.scrollTo(0, 0);
   }, []);
 
@@ -27,6 +28,11 @@ export default function HomePage({ plans, onSelectPlan, onOpenLookup }) {
       <div id="features">
         <Features />
       </div>
+      <div id="products">
+        <HardwareProducts
+          onOpenConsultation={() => onSelectPlan(plans.find(p => p.id === 'PRO_YEARLY') || plans[0] || null)}
+        />
+      </div>
       <div id="comparison">
         <ComparisonSection />
       </div>
@@ -35,10 +41,12 @@ export default function HomePage({ plans, onSelectPlan, onOpenLookup }) {
           onOpenOrder={() => onSelectPlan(plans.find(p => p.id === 'PRO_YEARLY') || plans[0] || null)}
         />
       </div>
-      <Pricing
-        plans={plans}
-        onSelectPlan={onSelectPlan}
-      />
+      <div id="pricing">
+        <Pricing
+          plans={plans}
+          onSelectPlan={onSelectPlan}
+        />
+      </div>
       <Testimonials />
       <FaqSection />
       <DownloadSection />

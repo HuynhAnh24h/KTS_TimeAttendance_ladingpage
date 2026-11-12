@@ -12,12 +12,11 @@ export default function Footer() {
               <img src="/app_icon.png" alt="KTS Logo" className="w-9 h-9 rounded-xl shadow-xs object-contain" />
               <div>
                 <span className="font-extrabold text-slate-900 text-sm tracking-tight block">KTS TimeAttendance</span>
-                <span className="text-[10px] text-slate-400 font-medium">Bản Quyền Chính Hãng v2.0.2</span>
+                <span className="text-[10px] text-slate-400 font-medium">Bản Quyền Chính Hãng & Thiết Bị Chấm Công v2.0.2</span>
               </div>
             </div>
             <p className="text-slate-500 max-w-sm leading-relaxed text-xs">
-              Hệ thống quản lý chấm công & nhân sự cho doanh nghiệp và nhà máy sản xuất.
-              Tự động hóa toàn diện quy trình tính công, kết nối máy chấm công IP nội bộ chuẩn xác.
+              Chuyên cung cấp phần mềm chấm công & tính lương tự động, phân phối máy chấm công Ronald Jack, Gigata, ZKTeco Face ID chính hãng và dịch vụ thi công kéo dây mạng, lắp đặt tận nơi toàn quốc.
             </p>
           </div>
 
@@ -25,8 +24,9 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wider mb-3">Điều Hướng</h4>
             <ul className="space-y-2">
-              <li><a href="/#features" className="hover:text-blue-600 transition-colors">Tính năng</a></li>
-              <li><a href="/#pricing" className="hover:text-blue-600 transition-colors">Bảng giá</a></li>
+              <li><a href="/#features" className="hover:text-blue-600 transition-colors">Tính năng phần mềm</a></li>
+              <li><a href="/#products" className="hover:text-blue-600 transition-colors font-semibold text-blue-600">Máy & Thi công tận nơi</a></li>
+              <li><a href="/#pricing" className="hover:text-blue-600 transition-colors">Bảng giá bản quyền</a></li>
               <li><a href="/#download" className="hover:text-blue-600 transition-colors">Tải phần mềm</a></li>
               <li>
                 <Link to="/huong-dan" className="hover:text-blue-600 transition-colors">
